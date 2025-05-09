@@ -1,4 +1,4 @@
-/*
+	/*
 	Mew Mew
  
 	Nguyen Tien Sy Doan, Kevin
@@ -16,14 +16,14 @@
 
 
 #include "WorkshopList.h"
-
+#include "Workshop.h"
 
 using namespace std;
 
 
 void WorkshopList::addWorkshop(const Workshop& workshop)
 {
-	workshopList.insert(Workshop);
+	workshopList.insert(workshop);
 }
 
 
@@ -35,28 +35,28 @@ int WorkshopList::getNumber(const Workshop& workshop) const
 
 string WorkshopList::getTitle(int workshopNo) const
 {
-	iterator iter = workshopList.findbyNumber(workshopNo);
+	auto iter = findbyNumber(workshopNo);
 	*iter.getTitle();
 }
 
 
 int WorkshopList::getHours(int workshopNo) const
 {
-	iterator iter = workshopList.findbyNumber(workshopNo);
+	auto iter = workshopList.findbyNumber(workshopNo);
 	*iter.getHours();
 }
 
 
 int WorkshopList::getCapacity(int workshopNo) const
 {
-	iterator iter = workshopList.findbyNumber(workshopNo);
+	auto iter = workshopList.findbyNumber(workshopNo);
 	*iter.getCapacity();
 }
 
 
 double WorkshopList::getPrice(int workshopNo) const
 {
-	iterator iter = workshopList.findbyNumber(workshopNo);
+	auto iter = workshopList.findbyNumber(workshopNo);
 	*iter.getPrice();
 }
 
@@ -75,7 +75,7 @@ void clearList()
 
 set<Workshop>::iterator findbyNumber(int workshopNo)
 {
-	iterator iter = workshopList.begin();
+	auto iter = workshopList.begin();
 	bool found = false;
 	while (!found)
 	{

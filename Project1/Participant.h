@@ -24,8 +24,8 @@ public:
 	int getID() { return id; }
 	std::string getFirstName() { return firstName; }
 	std::string getLastName() { return lastName; }
-	bool operator<(const Participant& participant) const { return id < participant.getID(); } 
-	~Participant()
+	bool operator<(const Participant& participant) const { return id < participant.id; } 
+	~Participant();
 private:
 	int id;
 	std::string firstName;

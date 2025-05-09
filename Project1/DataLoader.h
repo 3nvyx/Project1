@@ -3,10 +3,13 @@
 
 #include <iostream>
 #include <fstream>
+#include "Workshop.h"
+#include "WorkshopList.h"
 
 class DataLoader
 {
-	static void loadWorkshops(workshopList& WorkshopList, ifstream& file);
-}
+public:
+	static void loadWorkshops(WorkshopList& workshopList, std::ifstream& file);
+};
 
 #endif

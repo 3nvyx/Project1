@@ -61,7 +61,7 @@ void ParticipantList::clearList()
 
 map<Participant, vector<Workshop>>::const_iterator ParticipantList::findById(int id) const
 {
-    auto participantListIter = participantList.begin();
+    auto participantListIter = ParticipantList.begin();
 
   while (participantListIter != nullptr) 
   {
