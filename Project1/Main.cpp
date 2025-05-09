@@ -41,7 +41,7 @@ int main()
     list.addParticipant(p2);
     list.addParticipant(p3);
 
-    cout << "\n=== Participants ===\n";
+    cout << "\ntesting participants \n";
     cout << "First name of p1: " << p1.getFirstName() << endl;
     cout << "Last name of p1: " << p1.getLastName() << endl;
     cout << "ID of p1: " << p1.getID() << endl;
