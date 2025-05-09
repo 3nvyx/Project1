@@ -29,26 +29,22 @@ int WorkshopList::getNumber(const Workshop& workshop) const
 
 string WorkshopList::getTitle(int workshopNo) const
 {
-	auto iter = findByNumber(workshopNo);
-	return (iter != workshopList.end()) ? iter->getTitle() : "Not found";
+	return findByNumber(workshopNo)->getTitle();
 }
 
 int WorkshopList::getHours(int workshopNo) const
 {
-	auto iter = findByNumber(workshopNo);
-	return (iter != workshopList.end()) ? iter->getHours() : 0;
+	return findByNumber(workshopNo)->getHours(); 
 }
 
 int WorkshopList::getCapacity(int workshopNo) const
 {
-	auto iter = findByNumber(workshopNo);
-	return (iter != workshopList.end()) ? iter->getCapacity() : 0;
+	return findByNumber(workshopNo)->getCapacity();
 }
 
 double WorkshopList::getPrice(int workshopNo) const
 {
-	auto iter = findByNumber(workshopNo);
-	return (iter != workshopList.end()) ? iter->getPrice() : 0;
+	return findByNumber(workshopNo)->getPrice(); 
 }
 
 bool WorkshopList::isEmpty() const
@@ -63,14 +59,9 @@ void WorkshopList::clearList()
 
 std::set<Workshop>::iterator WorkshopList::findByNumber(int workshopNo) const
 {
-	auto iter = workshopList.cbegin();
-	while (iter != workshopList.cend())
-	{
-		if (iter->getNumber() == workshopNo)
-			return iter;
-		++iter;
-	}
-	return workshopList.cend();
+    return find_if(workshopList.begin(), workshopList.end(),
+        [workshopNo](const Workshop& workshop) {
+            return workshop.getNumber() == workshopNo;});
 }
 
 std::set<Workshop>::const_iterator WorkshopList::begin() const

@@ -61,12 +61,8 @@ void ParticipantList::clearList()
 
 std::map<Participant, std::vector<Workshop>>::const_iterator ParticipantList::findByID(int id) const
 {
-    auto it = participantList.cbegin();
-    while (it != participantList.cend())
-    {
-        if (it->first.getID() == id)
-            return it;
-        ++it;
-    }
-    return participantList.cend();
+      return find_if(participantList.begin(), participantList.end(),
+          [participantID](const pair<Participant, vector<Workshop>>& element) {
+            return element.first.getID() == participantID;
+        });
 }
