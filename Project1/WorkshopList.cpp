@@ -29,52 +29,57 @@ int WorkshopList::getNumber(const Workshop& workshop) const
 
 string WorkshopList::getTitle(int workshopNo) const
 {
-	auto iter = findbyNumber(workshopNo); 
+	auto iter = findByNumber(workshopNo);
 	return (iter != workshopList.end()) ? iter->getTitle() : "Not found";
 }
 
 int WorkshopList::getHours(int workshopNo) const
 {
-	iterator iter = workshopList.findbyNumber(workshopNo);
-	*iter.getHours();
+	auto iter = findByNumber(workshopNo);
+	return (iter != workshopList.end()) ? iter->getHours() : 0;
 }
 
 int WorkshopList::getCapacity(int workshopNo) const
 {
-	iterator iter = workshopList.findbyNumber(workshopNo);
-	*iter.getCapacity();
+	auto iter = findByNumber(workshopNo);
+	return (iter != workshopList.end()) ? iter->getCapacity() : 0;
 }
 
 double WorkshopList::getPrice(int workshopNo) const
 {
-	iterator iter = workshopList.findbyNumber(workshopNo);
-	*iter.getPrice();
+	auto iter = findByNumber(workshopNo);
+	return (iter != workshopList.end()) ? iter->getPrice() : 0;
 }
 
-boolWorkshopList:: isEmpty() const
+bool WorkshopList::isEmpty() const
 {
-	return workshopList.size() == 0;
+	return workshopList.empty();
 }
 
-void clearList()
+void WorkshopList::clearList()
 {
 	workshopList.clear();
 }
 
-set<Workshop>::iterator findbyNumber(int workshopNo)
+std::set<Workshop>::iterator WorkshopList::findByNumber(int workshopNo) const
 {
-	iterator iter = workshopList.begin();
-	bool found = false;
-	while (!found)
+	auto iter = workshopList.cbegin();
+	while (iter != workshopList.cend())
 	{
-		if(*iter.getNumber() = workshopNo)
-		{
-			found = true;
-		}
-		else
-		{
-			++iter;
-		}
+		if (iter->getNumber() == workshopNo)
+			return iter;
+		++iter;
 	}
-	return iter;
+	return workshopList.cend();
 }
+
+std::set<Workshop>::const_iterator WorkshopList::begin() const
+{
+	return workshopList.cbegin();
+}
+
+std::set<Workshop>::const_iterator WorkshopList::end() const
+{
+	return workshopList.cend();
+}
+

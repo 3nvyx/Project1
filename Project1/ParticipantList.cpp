@@ -25,8 +25,7 @@ void ParticipantList::addParticipant(const Participant& participant)
 // participant: Participant, workshop: Workshop
 void ParticipantList::addWorkshopToParticipant(const Participant& participant, const Workshop& workshop)
 {
-    int participantId = participant.getId();
-    findByID(participantId)->second.push_back(workshop);
+    participantList[participant].push_back(workshop);
 }
 
 int ParticipantList::getID(const Participant& participant) const
@@ -59,17 +58,15 @@ void ParticipantList::clearList()
     participantList.clear();
 }
 
-map<Participant, vector<Workshop>>::const_iterator ParticipantList::findById(int id) const
+
+std::map<Participant, std::vector<Workshop>>::const_iterator ParticipantList::findByID(int id) const
 {
-    auto participantListIter = ParticipantList.begin();
-
-  while (participantListIter != nullptr) 
-  {
-    if (participantListIter->first.getID() == id)
+    auto it = participantList.cbegin();
+    while (it != participantList.cend())
     {
-      return participantListIter;
+        if (it->first.getID() == id)
+            return it;
+        ++it;
     }
-
-    ++participantListIter;
-  }
+    return participantList.cend();
 }

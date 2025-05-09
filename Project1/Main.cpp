@@ -13,26 +13,26 @@
 */
 
 #include "DataLoader.h"
-#include "Participant.h"
-#include "ParticipantList.h"
-#include "Workshop.h"
 #include "WorkshopList.h"
+#include "Workshop.h"
+#include "ParticipantList.h"
+#include "Participant.h"
 
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <map>
-#include <vector>
-#include <set>
-
 
 using namespace std;
 
 int main() 
 {
-    ParticipantList list; 
-    Participant p0();  //what does this return? 
+    WorkshopList myWorkshopList;
+    DataLoader loader;
 
+    ifstream infile("workshop_database.txt");
+
+
+    // Participants
+    ParticipantList list;
     Participant p1(100, "Joe", "Doh");
     Participant p2(120, "Santa", "Claus");
     Participant p3(130, "Enigma", "Man");
@@ -41,6 +41,7 @@ int main()
     list.addParticipant(p2);
     list.addParticipant(p3);
 
+    cout << "\n=== Participants ===\n";
     cout << "First name of p1: " << p1.getFirstName() << endl;
     cout << "Last name of p1: " << p1.getLastName() << endl;
     cout << "ID of p1: " << p1.getID() << endl;
@@ -53,12 +54,5 @@ int main()
     cout << "Last name of p3: " << p3.getLastName() << endl;
     cout << "ID of p3: " << p3.getID() << endl;
 
-        //Workshop(int theNumber, const std::string& theTitle, int theHours, int theCapacity, double thePrice) :
-    // should come from the txt file. 
-    
-
-    //bool operator<(const Participant & participant) const { return id < participant.id; }
-
-
-	return 0;
+    return 0;
 }

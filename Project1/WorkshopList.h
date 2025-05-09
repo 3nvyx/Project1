@@ -2,7 +2,6 @@
 #ifndef WORKSHOPLIST_H
 #define WORKSHOPLIST_H
 
-#include <iostream>
 #include <string>
 #include <set>
 #include "Workshop.h"
@@ -18,8 +17,10 @@ public:
 	double getPrice(int workshopNo) const;
 	bool isEmpty() const;
 	void clearList();
-	std::set<Workshop>::iterator findbyNumber(int workshopNo) const;
 	~WorkshopList() {}
+	std::set<Workshop>::iterator findByNumber(int workshopNo) const;
+	std::set<Workshop>::const_iterator begin() const;
+	std::set<Workshop>::const_iterator end() const;
 
 private:
 	std::set<Workshop> workshopList;

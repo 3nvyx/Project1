@@ -19,36 +19,38 @@
 #include "Workshop.h"
 #include <sstream>
 
+using namespace std; 
+
 void DataLoader::loadWorkshops(WorkshopList& workshopList, std::ifstream& file)
 {
-    std::string line;
-    while (std::getline(file, line))
+    string line;
+    while (getline(file, line))
     {
-        std::stringstream ss(line);
-        std::string token;
+        stringstream ss(line);
+        string token;
 
         int number, hours, capacity;
         double price;
-        std::string title;
+        string title;
 
         // parse number
-        std::getline(ss, token, '|');
-        number = std::stoi(token);
+        getline(ss, token, '|');
+        number = stoi(token);
 
         // parse title
-        std::getline(ss, title, '|');
+        getline(ss, title, '|');
 
         // parse hours
-        std::getline(ss, token, '|');
-        hours = std::stoi(token);
+        getline(ss, token, '|');
+        hours = stoi(token);
 
         // parse capacity
-        std::getline(ss, token, '|');
-        capacity = std::stoi(token);
+        getline(ss, token, '|');
+        capacity = stoi(token);
 
         // parse price
-        std::getline(ss, token, '|');
-        price = std::stod(token);
+        getline(ss, token, '|');
+        price = stod(token);
 
         // Add to list
         workshopList.addWorkshop(Workshop(number, title, hours, capacity, price));
