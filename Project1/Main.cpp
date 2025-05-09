@@ -37,6 +37,10 @@ int main()
     Participant p2(120, "Santa", "Claus");
     Participant p3(130, "Enigma", "Man");
 
+    list.addParticipant(p1);
+    list.addParticipant(p2);
+    list.addParticipant(p3);
+
     cout << "First name of p1: " << p1.getFirstName() << endl;
     cout << "Last name of p1: " << p1.getLastName() << endl;
     cout << "ID of p1: " << p1.getID() << endl;
@@ -52,13 +56,6 @@ int main()
         //Workshop(int theNumber, const std::string& theTitle, int theHours, int theCapacity, double thePrice) :
     // should come from the txt file. 
     
-    list.addParticipant(p1);
-    list.addParticipant(p2);
-    list.addParticipant(p3);
-
-    list.addWorkshopToParticipant(p1, w1);
-    list.addWorkshopToParticipant(p2, w2);
-    list.addWorkshopToParticipant(p3, w2);
 
     //bool operator<(const Participant & participant) const { return id < participant.id; }
 

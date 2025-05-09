@@ -13,12 +13,13 @@
 */
 
 #include "WorkshopList.h"
+#include "Workshop.h"
 
 using namespace std;
 
 void WorkshopList::addWorkshop(const Workshop& workshop)
 {
-	workshopList.insert(Workshop);
+	workshopList.insert(workshop);
 }
 
 int WorkshopList::getNumber(const Workshop& workshop) const
@@ -28,8 +29,8 @@ int WorkshopList::getNumber(const Workshop& workshop) const
 
 string WorkshopList::getTitle(int workshopNo) const
 {
-	iterator iter = workshopList.findbyNumber(workshopNo);
-	*iter.getTitle();
+	auto iter = findbyNumber(workshopNo); 
+	return (iter != workshopList.end()) ? iter->getTitle() : "Not found";
 }
 
 int WorkshopList::getHours(int workshopNo) const

@@ -18,7 +18,7 @@ public:
 	double getPrice(int workshopNo) const;
 	bool isEmpty() const;
 	void clearList();
-	std::set<Workshop>::iterator findbyNumber(int workshopNo);
+	std::set<Workshop>::iterator findbyNumber(int workshopNo) const;
 	~WorkshopList() {}
 
 private:

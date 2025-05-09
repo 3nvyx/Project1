@@ -1,4 +1,4 @@
-	/*
+/*
 	Mew Mew
  
 	Nguyen Tien Sy Doan, Kevin
@@ -14,79 +14,44 @@
 	Workshop Hub
 */
 
-
+#include "DataLoader.h"
 #include "WorkshopList.h"
 #include "Workshop.h"
+#include <sstream>
 
-using namespace std;
-
-
-void WorkshopList::addWorkshop(const Workshop& workshop)
+void DataLoader::loadWorkshops(WorkshopList& workshopList, std::ifstream& file)
 {
-	workshopList.insert(workshop);
+    std::string line;
+    while (std::getline(file, line))
+    {
+        std::stringstream ss(line);
+        std::string token;
+
+        int number, hours, capacity;
+        double price;
+        std::string title;
+
+        // parse number
+        std::getline(ss, token, '|');
+        number = std::stoi(token);
+
+        // parse title
+        std::getline(ss, title, '|');
+
+        // parse hours
+        std::getline(ss, token, '|');
+        hours = std::stoi(token);
+
+        // parse capacity
+        std::getline(ss, token, '|');
+        capacity = std::stoi(token);
+
+        // parse price
+        std::getline(ss, token, '|');
+        price = std::stod(token);
+
+        // Add to list
+        workshopList.addWorkshop(Workshop(number, title, hours, capacity, price));
+    }
 }
 
-
-int WorkshopList::getNumber(const Workshop& workshop) const
-{
-	return workshop.getNumber();
-}
-
-
-string WorkshopList::getTitle(int workshopNo) const
-{
-	auto iter = findbyNumber(workshopNo);
-	*iter.getTitle();
-}
-
-
-int WorkshopList::getHours(int workshopNo) const
-{
-	auto iter = workshopList.findbyNumber(workshopNo);
-	*iter.getHours();
-}
-
-
-int WorkshopList::getCapacity(int workshopNo) const
-{
-	auto iter = workshopList.findbyNumber(workshopNo);
-	*iter.getCapacity();
-}
-
-
-double WorkshopList::getPrice(int workshopNo) const
-{
-	auto iter = workshopList.findbyNumber(workshopNo);
-	*iter.getPrice();
-}
-
-
-boolWorkshopList:: isEmpty() const
-{
-	return workshopList.size() == 0;
-}
-
-
-void clearList()
-{
-	workshopList.clear();
-}
-
-
-set<Workshop>::iterator findbyNumber(int workshopNo)
-{
-	auto iter = workshopList.begin();
-	bool found = false;
-	while (!found)
-	{
-		if(*iter.getNumber() = workshopNo)
-		{
-			found = true;
-		}
-		else
-		{
-			++iter;
-		}
-	}
-	return iter;
-}
