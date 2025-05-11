@@ -1,58 +1,161 @@
 /*
     Mew Mew
 
-    Nguyen Tien Sy Doan, Kevin 
-    Nguyen, Long (Eric) 
+    Doan, Kevin
+    Nguyen, Long (Eric)
     Truong, Jeffrey
     Vu, Richard
 
     Spring 2025
     CS A250 - C++ 2
-    
+
     Workshop Hub
 */
 
 #include "DataLoader.h"
-#include "WorkshopList.h"
 #include "Workshop.h"
-#include "ParticipantList.h"
+#include "WorkshopList.h"
 #include "Participant.h"
+#include "ParticipantList.h"
 
-#include <iostream>
-#include <fstream>
+#include <sstream>
+#include <vector>
 
 using namespace std;
 
-int main() 
+int main()
 {
-    WorkshopList myWorkshopList;
+    // --- Test WorkshopList & DataLoader ---
+    cout << "=== WorkshopList Tests ===\n";
+
+    WorkshopList workshopList;
     DataLoader loader;
 
-    ifstream infile("workshop_database.txt");
+    // 1. isEmpty on fresh list
+    cout << "workshopList.isEmpty()? "
+         << (workshopList.isEmpty() ? "Yes" : "No") << "\n";
 
+    // 2. Load workshop database from file
+    ifstream infile("Project1/workshop_database.txt");
+    if (!infile)
+    {
+        cerr << "ERROR: Cannot open workshop_database.txt\n";
+        return 1;
+    }
 
-    // Participants
-    ParticipantList list;
-    Participant p1(100, "Joe", "Doh");
-    Participant p2(120, "Santa", "Claus");
-    Participant p3(130, "Enigma", "Man");
+    loader.loadWorkshops(workshopList, infile);
+    infile.close();
 
-    list.addParticipant(p1);
-    list.addParticipant(p2);
-    list.addParticipant(p3);
+    // 3. isEmpty after load
+    cout << "After load, isEmpty()? "
+         << (workshopList.isEmpty() ? "Yes" : "No") << "\n\n";
 
-    cout << "\ntesting participants \n";
-    cout << "First name of p1: " << p1.getFirstName() << endl;
-    cout << "Last name of p1: " << p1.getLastName() << endl;
-    cout << "ID of p1: " << p1.getID() << endl;
+    // 4. Using number from workshop_database.txt
+    //    loop through each workshop and test member functions
+    ifstream testFile("Project1/workshop_database.txt");
+    if (!testFile)
+    {
+        cerr << "ERROR: Cannot open workshop_database.txt to test\n";
+        return 1;
+    }
 
-    cout << "First name of p2: " << p2.getFirstName() << endl;
-    cout << "Last name of p2: " << p2.getLastName() << endl;
-    cout << "ID of p2: " << p2.getID() << endl;
+    string line;
+    while (getline(testFile, line))
+    {
+        stringstream ss(line);
+        string token;
 
-    cout << "First name of p3: " << p3.getFirstName() << endl;
-    cout << "Last name of p3: " << p3.getLastName() << endl;
-    cout << "ID of p3: " << p3.getID() << endl;
+        // Get number
+        getline(ss, token, '|');
+        int number = stoi(token);
+
+        // Get workshop
+        auto workshopIter = workshopList.findByNumber(number);
+
+        // Try each member function
+        cout << "Workshop #" << number << "\n"
+             << "Title: " << workshopIter->getTitle() << "\n"
+             << "Hours: " << workshopIter->getHours() << "\n"
+             << "Capacity: " << workshopIter->getCapacity() << "\n"
+             << "Price: $" << workshopIter->getPrice() << "\n\n";
+    }
+
+    testFile.close();
+
+    // 6. Test clearList and use isEmpty to verify
+    workshopList.clearList();
+    cout << "After clearList(), isEmpty()? "
+         << (workshopList.isEmpty() ? "Yes" : "No") << "\n\n";
+
+    // --- Test ParticipantList & Participant ---
+    cout << "=== ParticipantList Tests ===\n";
+
+    ParticipantList participantList;
+
+    // 1. isEmpty on fresh list
+    cout << "participantList.isEmpty()? "
+         << (participantList.isEmpty() ? "Yes" : "No") << "\n";
+
+    // 2. Create participants and add to participantList
+    Participant participantA(1, "Alice", "Anderson");
+    Participant participantB(2, "Bob", "Brown");
+    Participant participantC(3, "Cara", "Clark");
+
+    participantList.addParticipant(participantA);
+    participantList.addParticipant(participantB);
+    participantList.addParticipant(participantC);
+
+    cout << "Added participants A, B, C.\n";
+    cout << "participantList.isEmpty()? "
+         << (participantList.isEmpty() ? "Yes" : "No") << "\n\n";
+
+    // 3. Test getID, getFirstName, getLastName
+    cout << "Testing getters for each participant:\n";
+    for (auto pid : {1, 2, 3})
+    {
+        cout << " ID " << pid
+             << " -> getFirstName: " << participantList.getFirstName(pid)
+             << ", getLastName: " << participantList.getLastName(pid)
+             << ", getID(obj): " << participantList.getID((pid == 1 ? participantA : pid == 2 ? participantB
+                                                                                              : participantC))
+             << "\n";
+    }
+    cout << "\n";
+
+    // 4. Register some workshops to participants
+    Workshop workshop1(501, "Workshop Test 1", 1, 10, 15.0);
+    Workshop workshop2(502, "Workshop Test 2", 2, 20, 25.0);
+
+    participantList.addWorkshopToParticipant(participantA, workshop1);
+    participantList.addWorkshopToParticipant(participantB, workshop2);
+    participantList.addWorkshopToParticipant(participantB, workshop1);
+
+    cout << "Registered test workshops to A & B.\n\n";
+
+    // 5. Test getWorkshops (and indirectly findByID)
+    cout << "Participant A's workshops:\n";
+    for (const Workshop &workshop : participantList.getWorkshops(1))
+    {
+        cout << "  #" << workshop.getNumber()
+             << " " << workshop.getTitle() << "\n";
+    }
+
+    cout << "Participant B's workshops:\n";
+    for (const Workshop &workshop : participantList.getWorkshops(2))
+    {
+        cout << "  #" << workshop.getNumber()
+             << " " << workshop.getTitle() << "\n";
+    }
+
+    cout << "Participant C's workshops (should be none):\n";
+    auto participantCWorkshops = participantList.getWorkshops(3);
+    cout << (participantCWorkshops.empty() ? "  [none]\n" : "");
+    cout << "\n";
+
+    // 6. clearList and re-test isEmpty
+    participantList.clearList();
+    cout << "After clearList(), participantList.isEmpty()? "
+         << (participantList.isEmpty() ? "Yes" : "No") << "\n";
 
     return 0;
 }

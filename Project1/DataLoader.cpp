@@ -1,17 +1,15 @@
 /*
-	Mew Mew
- 
-	Nguyen Tien Sy Doan, Kevin
-	Nguyen, Long (Eric)
-	Truong, Jeffrey
-	Vu, Richard
+    Mew Mew
 
+    Doan, Kevin
+    Nguyen, Long (Eric)
+    Truong, Jeffrey
+    Vu, Richard
 
-	Spring 2025
-	CS A250 - C++ 2
+    Spring 2025
+    CS A250 - C++ 2
 
-
-	Workshop Hub
+    Workshop Hub
 */
 
 #include "DataLoader.h"
@@ -19,9 +17,9 @@
 #include "Workshop.h"
 #include <sstream>
 
-using namespace std; 
+using namespace std;
 
-void DataLoader::loadWorkshops(WorkshopList& workshopList, std::ifstream& file)
+void DataLoader::loadWorkshops(WorkshopList &workshopList, std::ifstream &file)
 {
     string line;
     while (getline(file, line))
@@ -56,4 +54,3 @@ void DataLoader::loadWorkshops(WorkshopList& workshopList, std::ifstream& file)
         workshopList.addWorkshop(Workshop(number, title, hours, capacity, price));
     }
 }
-

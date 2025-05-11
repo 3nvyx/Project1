@@ -1,19 +1,19 @@
 /*
-	Mew Mew
+		Mew Mew
 
-	Nguyen Tien Sy Doan, Kevin
-	Nguyen, Long (Eric)
-	Truong, Jeffrey
-	Vu, Richard
+		Doan, Kevin
+		Nguyen, Long (Eric)
+		Truong, Jeffrey
+		Vu, Richard
 
-	Spring 2025
-	CS A250 - C++ 2
+		Spring 2025
+		CS A250 - C++ 2
 
-	Workshop Hub
+		Workshop Hub
 */
 
-#include "WorkshopList.h"
 #include "Workshop.h"
+#include "WorkshopList.h"
 
 using namespace std;
 
@@ -59,7 +59,7 @@ void WorkshopList::clearList()
 
 std::set<Workshop>::iterator WorkshopList::findByNumber(int workshopNo) const
 {
-	return find_if(workshopList.cbegin(), workshopList.cend(),
+	return find_if(workshopList.begin(), workshopList.end(),
 								 [workshopNo](const Workshop &workshop)
 								 { return workshop.getNumber() == workshopNo; });
 }
