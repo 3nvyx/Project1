@@ -9,8 +9,8 @@
 class WorkshopList
 {
 public:
-	void addWorkshop(const Workshop& workshop);
-	int getNumber(const Workshop& workshop) const;
+	void addWorkshop(const Workshop &workshop);
+	int getNumber(const Workshop &workshop) const;
 	std::string getTitle(int workshopNo) const;
 	int getHours(int workshopNo) const;
 	int getCapacity(int workshopNo) const;
@@ -19,12 +19,9 @@ public:
 	void clearList();
 	~WorkshopList() {}
 	std::set<Workshop>::iterator findByNumber(int workshopNo) const;
-	std::set<Workshop>::const_iterator begin() const;
-	std::set<Workshop>::const_iterator end() const;
 
 private:
 	std::set<Workshop> workshopList;
-	
 };
 
 #endif

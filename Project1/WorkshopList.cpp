@@ -17,12 +17,12 @@
 
 using namespace std;
 
-void WorkshopList::addWorkshop(const Workshop& workshop)
+void WorkshopList::addWorkshop(const Workshop &workshop)
 {
 	workshopList.insert(workshop);
 }
 
-int WorkshopList::getNumber(const Workshop& workshop) const
+int WorkshopList::getNumber(const Workshop &workshop) const
 {
 	return workshop.getNumber();
 }
@@ -34,7 +34,7 @@ string WorkshopList::getTitle(int workshopNo) const
 
 int WorkshopList::getHours(int workshopNo) const
 {
-	return findByNumber(workshopNo)->getHours(); 
+	return findByNumber(workshopNo)->getHours();
 }
 
 int WorkshopList::getCapacity(int workshopNo) const
@@ -44,7 +44,7 @@ int WorkshopList::getCapacity(int workshopNo) const
 
 double WorkshopList::getPrice(int workshopNo) const
 {
-	return findByNumber(workshopNo)->getPrice(); 
+	return findByNumber(workshopNo)->getPrice();
 }
 
 bool WorkshopList::isEmpty() const
@@ -59,18 +59,7 @@ void WorkshopList::clearList()
 
 std::set<Workshop>::iterator WorkshopList::findByNumber(int workshopNo) const
 {
-    return find_if(workshopList.begin(), workshopList.end(),
-        [workshopNo](const Workshop& workshop) {
-            return workshop.getNumber() == workshopNo;});
+	return find_if(workshopList.cbegin(), workshopList.cend(),
+								 [workshopNo](const Workshop &workshop)
+								 { return workshop.getNumber() == workshopNo; });
 }
-
-std::set<Workshop>::const_iterator WorkshopList::begin() const
-{
-	return workshopList.cbegin();
-}
-
-std::set<Workshop>::const_iterator WorkshopList::end() const
-{
-	return workshopList.cend();
-}
-

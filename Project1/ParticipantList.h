@@ -15,17 +15,17 @@
 #ifndef PARTICIPANT_LIST_H
 #define PARTICIPANT_LIST_H
 
-#include <string>
 #include <map>
 #include <vector>
 #include "Participant.h"
 #include "Workshop.h"
 
-class ParticipantList {
+class ParticipantList
+{
 public:
-	void addParticipant(const Participant&);
-	void addWorkshopToParticipant(const Participant& , const Workshop&);
-	int getID(const Participant&) const;
+	void addParticipant(const Participant &);
+	void addWorkshopToParticipant(const Participant &, const Workshop &);
+	int getID(const Participant &) const;
 	std::string getFirstName(int) const;
 	std::string getLastName(int) const;
 	std::vector<Workshop> getWorkshops(int) const;
