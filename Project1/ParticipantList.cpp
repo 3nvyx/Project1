@@ -1,7 +1,7 @@
 /*
     Mew Mew
 
-    Nguyen Tien Sy Doan, Kevin
+    Doan, Kevin
     Nguyen, Long (Eric)
     Truong, Jeffrey
     Vu, Richard

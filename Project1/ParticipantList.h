@@ -1,24 +1,25 @@
 /*
-	Mew Mew
+		Mew Mew
 
-	Nguyen Tien Sy Doan, Kevin
-	Nguyen, Long (Eric)
-	Truong, Jeffrey
-	Vu, Richard
+		Doan, Kevin
+		Nguyen, Long (Eric)
+		Truong, Jeffrey
+		Vu, Richard
 
-	Spring 2025
-	CS A250 - C++ 2
+		Spring 2025
+		CS A250 - C++ 2
 
-	Workshop Hub
+		Workshop Hub
 */
 
 #ifndef PARTICIPANT_LIST_H
 #define PARTICIPANT_LIST_H
 
-#include <map>
-#include <vector>
 #include "Participant.h"
 #include "Workshop.h"
+
+#include <map>
+#include <vector>
 
 class ParticipantList
 {
