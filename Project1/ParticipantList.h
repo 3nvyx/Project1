@@ -32,9 +32,9 @@ public:
 	std::vector<Workshop> getWorkshops(int) const;
 	bool isEmpty() const;
 	void clearList();
-	std::map<Participant, std::vector<Workshop>>::const_iterator findByID(int id) const;
 
 private:
+	std::map<Participant, std::vector<Workshop>>::const_iterator findByID(int id) const;
 	std::map<Participant, std::vector<Workshop>> participantList;
 };
 

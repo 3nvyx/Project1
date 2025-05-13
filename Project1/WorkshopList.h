@@ -30,9 +30,9 @@ public:
 	bool isEmpty() const;
 	void clearList();
 	~WorkshopList() {}
-	std::set<Workshop>::iterator findByNumber(int workshopNo) const;
 
 private:
+	std::set<Workshop>::iterator findByNumber(int workshopNo) const;
 	std::set<Workshop> workshopList;
 };
 

@@ -69,20 +69,17 @@ int main()
         getline(ss, token, '|');
         int number = stoi(token);
 
-        // Get workshop
-        auto workshopIter = workshopList.findByNumber(number);
-
         // Try each member function
         cout << "Workshop #" << number << "\n"
-             << "Title: " << workshopIter->getTitle() << "\n"
-             << "Hours: " << workshopIter->getHours() << "\n"
-             << "Capacity: " << workshopIter->getCapacity() << "\n"
-             << "Price: $" << workshopIter->getPrice() << "\n\n";
+             << "Title: " << workshopList.getTitle(number) << "\n"
+             << "Hours: " << workshopList.getHours(number) << "\n"
+             << "Capacity: " << workshopList.getCapacity(number) << "\n"
+             << "Price: $" << workshopList.getPrice(number) << "\n\n";
     }
 
     testFile.close();
 
-    // 6. Test clearList and use isEmpty to verify
+    // 5. Test clearList and use isEmpty to verify
     workshopList.clearList();
     cout << "After clearList(), isEmpty()? "
          << (workshopList.isEmpty() ? "Yes" : "No") << "\n\n";
@@ -109,15 +106,18 @@ int main()
     cout << "participantList.isEmpty()? "
          << (participantList.isEmpty() ? "Yes" : "No") << "\n\n";
 
-    // 3. Test getID, getFirstName, getLastName
+    // 3. Test getters for each participant
     cout << "Testing getters for each participant:\n";
-    for (auto pid : {1, 2, 3})
+    const Participant participants[] = {participantA, participantB, participantC};
+
+    for (int i{1}; i < 4; ++i)
     {
-        cout << " ID " << pid
-             << " -> getFirstName: " << participantList.getFirstName(pid)
-             << ", getLastName: " << participantList.getLastName(pid)
-             << ", getID(obj): " << participantList.getID((pid == 1 ? participantA : pid == 2 ? participantB
-                                                                                              : participantC))
+        const Participant &currentParticipant = participants[i - 1];
+
+        cout << " ID " << i
+             << " -> getFirstName: " << participantList.getFirstName(i)
+             << ", getLastName: " << participantList.getLastName(i)
+             << ", getID(obj): " << participantList.getID(currentParticipant)
              << "\n";
     }
     cout << "\n";
@@ -132,7 +132,7 @@ int main()
 
     cout << "Registered test workshops to A & B.\n\n";
 
-    // 5. Test getWorkshops (and indirectly findByID)
+    // 5. Test getWorkshops
     cout << "Participant A's workshops:\n";
     for (const Workshop &workshop : participantList.getWorkshops(1))
     {
@@ -152,7 +152,7 @@ int main()
     cout << (participantCWorkshops.empty() ? "  [none]\n" : "");
     cout << "\n";
 
-    // 6. clearList and re-test isEmpty
+    // 6. clearList and test isEmpty
     participantList.clearList();
     cout << "After clearList(), participantList.isEmpty()? "
          << (participantList.isEmpty() ? "Yes" : "No") << "\n";
