@@ -69,20 +69,17 @@ int main()
         getline(ss, token, '|');
         int number = stoi(token);
 
-        // Get workshop
-        auto workshopIter = workshopList.findByNumber(number);
-
         // Try each member function
         cout << "Workshop #" << number << "\n"
-             << "Title: " << workshopIter->getTitle() << "\n"
-             << "Hours: " << workshopIter->getHours() << "\n"
-             << "Capacity: " << workshopIter->getCapacity() << "\n"
-             << "Price: $" << workshopIter->getPrice() << "\n\n";
+             << "Title: " << workshopList.getTitle(number) << "\n"
+             << "Hours: " << workshopList.getHours(number) << "\n"
+             << "Capacity: " << workshopList.getCapacity(number) << "\n"
+             << "Price: $" << workshopList.getPrice(number) << "\n\n";
     }
 
     testFile.close();
 
-    // 6. Test clearList and use isEmpty to verify
+    // 5. Test clearList and use isEmpty to verify
     workshopList.clearList();
     cout << "After clearList(), isEmpty()? "
          << (workshopList.isEmpty() ? "Yes" : "No") << "\n\n";
@@ -101,29 +98,64 @@ int main()
     Participant participantB(2, "Bob", "Brown");
     Participant participantC(3, "Cara", "Clark");
 
-    // Participants
-    ParticipantList list;
-    Participant p1(100, "Joe", "Doh");
-    Participant p2(120, "Santa", "Claus");
-    Participant p3(130, "Enigma", "Man");
+    participantList.addParticipant(participantA);
+    participantList.addParticipant(participantB);
+    participantList.addParticipant(participantC);
 
-    list.addParticipant(p1);
-    list.addParticipant(p2);
-    list.addParticipant(p3);
+    cout << "Added participants A, B, C.\n";
+    cout << "participantList.isEmpty()? "
+         << (participantList.isEmpty() ? "Yes" : "No") << "\n\n";
 
-    cout << "\ntesting participants \n";
-    cout << "First name of p1: " << p1.getFirstName() << endl;
-    cout << "Last name of p1: " << p1.getLastName() << endl;
-    cout << "ID of p1: " << p1.getID() << endl;
+    // 3. Test getters for each participant
+    cout << "Testing getters for each participant:\n";
+    const Participant participants[] = {participantA, participantB, participantC};
+
+    for (int i{1}; i < 4; ++i)
+    {
+        const Participant &currentParticipant = participants[i - 1];
+
+        cout << " ID " << i
+             << " -> getFirstName: " << participantList.getFirstName(i)
+             << ", getLastName: " << participantList.getLastName(i)
+             << ", getID(obj): " << participantList.getID(currentParticipant)
+             << "\n";
+    }
+    cout << "\n";
+
+    // 4. Register some workshops to participants
+    Workshop workshop1(501, "Workshop Test 1", 1, 10, 15.0);
+    Workshop workshop2(502, "Workshop Test 2", 2, 20, 25.0);
+
+    participantList.addWorkshopToParticipant(participantA, workshop1);
+    participantList.addWorkshopToParticipant(participantB, workshop2);
+    participantList.addWorkshopToParticipant(participantB, workshop1);
+
+    cout << "Registered test workshops to A & B.\n\n";
+
+    // 5. Test getWorkshops
+    cout << "Participant A's workshops:\n";
+    for (const Workshop &workshop : participantList.getWorkshops(1))
+    {
+        cout << "  #" << workshop.getNumber()
+             << " " << workshop.getTitle() << "\n";
+    }
+
+    cout << "Participant B's workshops:\n";
+    for (const Workshop &workshop : participantList.getWorkshops(2))
+    {
+        cout << "  #" << workshop.getNumber()
+             << " " << workshop.getTitle() << "\n";
+    }
 
     cout << "Participant C's workshops (should be none):\n";
     auto participantCWorkshops = participantList.getWorkshops(3);
     cout << (participantCWorkshops.empty() ? "  [none]\n" : "");
     cout << "\n";
 
-    cout << "First name of p3: " << p3.getFirstName() << endl;
-    cout << "Last name of p3: " << p3.getLastName() << endl;
-    cout << "ID of p3: " << p3.getID() << endl;
+    // 6. clearList and test isEmpty
+    participantList.clearList();
+    cout << "After clearList(), participantList.isEmpty()? "
+         << (participantList.isEmpty() ? "Yes" : "No") << "\n";
 
     return 0;
 }

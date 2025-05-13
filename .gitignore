@@ -366,3 +366,5 @@ FodyWeavers.xsd
 .vscode
 *.plist
 Main.dSYM
+program.dSYM
+program
