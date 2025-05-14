@@ -13,13 +13,12 @@
 */
 
 #include "DataLoader.h"
-#include "WorkshopList.h"
-#include "Workshop.h"
 #include <sstream>
 
 using namespace std;
 
-void DataLoader::loadWorkshops(WorkshopList &workshopList, std::ifstream &file)
+void DataLoader::loadWorkshops(
+    WorkshopList &workshopList, ifstream &file)
 {
     string line;
     while (getline(file, line))
@@ -51,6 +50,38 @@ void DataLoader::loadWorkshops(WorkshopList &workshopList, std::ifstream &file)
         price = stod(token);
 
         // Add to list
-        workshopList.addWorkshop(Workshop(number, title, hours, capacity, price));
+        workshopList.addWorkshop(
+            Workshop(number, title,
+                hours, capacity, price));
     }
 }
+
+void DataLoader::loadParticipants(
+    ParticipantList &participantList , ifstream &file)
+{
+    string line;
+    while (getline(file, line))
+    {
+        stringstream ss(line);
+        string token;
+
+        int id;
+        string firstName, lastName;
+
+        // parse ID
+        getline(ss, token, '|');
+        id = stoi(token);
+
+        // parse first name
+        getline(ss, firstName, '|');
+
+        // parse last name
+        getline(ss, lastName, '|');
+
+        // Add to list
+        participantList.addParticipant(
+            Participant(id, firstName, lastName));
+    }
+}
+
+

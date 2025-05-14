@@ -30,6 +30,8 @@ public:
 	std::string getFirstName(int) const;
 	std::string getLastName(int) const;
 	std::vector<Workshop> getWorkshops(int) const;
+	const Participant& getParticipant(int) const;
+	void cancelWorkshop(int, int);
 	bool isEmpty() const;
 	void clearList();
 

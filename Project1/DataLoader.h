@@ -17,13 +17,19 @@
 
 #include <iostream>
 #include <fstream>
-#include "Workshop.h"
 #include "WorkshopList.h"
+#include "ParticipantList.h"
 
 class DataLoader
 {
 public:
-	static void loadWorkshops(WorkshopList &workshopList, std::ifstream &file);
+	static void loadWorkshops(
+		WorkshopList &workshopList, 
+		const std::string& filename);
+	static void loadParticipants(
+		ParticipantList &participantList,
+		 std::ifstream &file)
+
 };
 
 #endif
