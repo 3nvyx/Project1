@@ -48,6 +48,18 @@ vector<Workshop> ParticipantList::getWorkshops(int id) const
     return findByID(id)->second;
 }
 
+const Participant& ParticipantList::getParticipant(int id) const
+{
+    return findByID(id)->first;
+}
+
+void ParticipantList::cancelWorkshop(int id, int workshopNo) 
+{
+    vector<Workshop> workshops = getWorkshops(id);
+    remove_if(workshops.begin(), workshops.end(), 
+        [](Workshop workshop) { return workshop.getNumber() == workshopNo });
+}
+
 bool ParticipantList::isEmpty() const
 {
     return participantList.size() == 0;

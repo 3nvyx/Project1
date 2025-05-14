@@ -57,7 +57,23 @@ void WorkshopList::clearList()
 	workshopList.clear();
 }
 
-std::set<Workshop>::iterator WorkshopList::findByNumber(int workshopNo) const
+const Workshop &WorkshopList::getWorkshop(int workshopNo) const
+{
+	auto found = findByNumber(workshopNo);
+	if (found != workshopList.end())
+	{
+		return *found;
+	}
+}
+
+const std::set<Workshop> &WorkshopList::getAllWorkshops() const
+{
+	return workshopList;
+}
+
+
+
+std::set<Workshop>::const_iterator WorkshopList::findByNumber(int workshopNo) const
 {
 	return find_if(workshopList.begin(), workshopList.end(),
 								 [workshopNo](const Workshop &workshop)

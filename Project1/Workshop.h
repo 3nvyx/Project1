@@ -5,7 +5,7 @@
 		Nguyen, Long (Eric)
 		Truong, Jeffrey
 		Vu, Richard
-
+		 
 		Spring 2025
 		CS A250 - C++ 2
 
@@ -27,6 +27,7 @@ public:
 	int getCapacity() const { return capacity; }
 	double getPrice() const { return price; }
 	bool operator<(const Workshop &workshop) const { return number < workshop.getNumber(); }
+	bool operator== (const Workshop &workshop) const { return number == workshop.getNumber(): }
 	~Workshop() {}
 
 private:
