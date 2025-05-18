@@ -13,7 +13,6 @@
 */
 
 #include "ParticipantList.h"
-#include <algorithm>
 
 using namespace std;
 
@@ -58,7 +57,7 @@ void ParticipantList::clearList()
     participantList.clear();
 }
 
-std::map<Participant, std::vector<Workshop>>::const_iterator ParticipantList::findByID(int id) const
+map<Participant, vector<Workshop>>::const_iterator ParticipantList::findByID(int id) const
 {
     return find_if(participantList.begin(), participantList.end(),
                    [id](const pair<Participant, vector<Workshop>> &element)

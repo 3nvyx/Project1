@@ -21,12 +21,13 @@ class Participant
 {
 public:
 	Participant(int newId, std::string newFirstName, std::string newLastName)
-			: id(newId), firstName(newFirstName), lastName(newLastName) {}
+		: id(newId), firstName(newFirstName), lastName(newLastName) {}
+
 	int getID() const { return id; }
 	std::string getFirstName() const { return firstName; }
 	std::string getLastName() const { return lastName; }
+
 	bool operator<(const Participant &participant) const { return id < participant.id; }
-	~Participant() {};
 
 private:
 	int id;

@@ -60,6 +60,6 @@ void WorkshopList::clearList()
 std::set<Workshop>::iterator WorkshopList::findByNumber(int workshopNo) const
 {
 	return find_if(workshopList.begin(), workshopList.end(),
-								 [workshopNo](const Workshop &workshop)
-								 { return workshop.getNumber() == workshopNo; });
+				   [workshopNo](const Workshop &workshop)
+				   { return workshop.getNumber() == workshopNo; });
 }

@@ -26,15 +26,19 @@ class ParticipantList
 public:
 	void addParticipant(const Participant &);
 	void addWorkshopToParticipant(const Participant &, const Workshop &);
+
 	int getID(const Participant &) const;
 	std::string getFirstName(int) const;
 	std::string getLastName(int) const;
 	std::vector<Workshop> getWorkshops(int) const;
+
 	bool isEmpty() const;
+
 	void clearList();
 
 private:
 	std::map<Participant, std::vector<Workshop>>::const_iterator findByID(int id) const;
+
 	std::map<Participant, std::vector<Workshop>> participantList;
 };
 
