@@ -35,7 +35,7 @@ public:
     void closeWorkshop(int workshopNo);
     void reopenWorkshop(int workshopNo);
 
-    bool isOpen(int workshopNo);
+    bool isOpen(int workshopNo) const;
 
     const std::set<int> &getOpenWorkshop();
 
