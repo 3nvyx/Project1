@@ -24,12 +24,9 @@ class DataLoader
 {
 public:
 	static void loadWorkshops(
-		WorkshopList &workshopList, 
-		const std::string& filename);
+		WorkshopList &workshopList, std::ifstream &file);
 	static void loadParticipants(
-		ParticipantList &participantList,
-		 std::ifstream &file)
-
+		ParticipantList &participantList, std::ifstream &file);
 };
 
 #endif

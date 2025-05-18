@@ -1,15 +1,15 @@
 /*
-		Mew Mew
+    Mew Mew
 
-		Doan, Kevin
-		Nguyen, Long (Eric)
-		Truong, Jeffrey
-		Vu, Richard
+    Doan, Kevin
+    Nguyen, Long (Eric)
+    Truong, Jeffrey
+    Vu, Richard
 
-		Spring 2025
-		CS A250 - C++ 2
+    Spring 2025
+    CS A250 - C++ 2
 
-		Workshop Hub
+    Workshop Hub
 */
 
 #ifndef INTERFACE_H
@@ -21,34 +21,31 @@
 
 #include <string>
 
-export module Interface;
+void processMenu(const WorkshopList &workshopList,
+                 const ParticipantList &participantList,
+                 const RegistrationManager &registrationManager);
 
-export void processMenu(const WorkshopList& workshopList, 
-  const ParticipantList& participantList, 
-  const RegistrationManager& registrationManager);
+void getIdentification(
+    int id, const std::string &firstName, const std::string &lastName);
 
-export void getIdentification(
-  int id, const std::string& firstName, const std::string& lastName);
+bool verifyIdentification(const ParticipantList &participantList,
+                          int id, const std::string &firstName, const std::string &lastName);
 
-export bool verifyIdentification(const ParticipantList& participantList, 
-  int id, const std::string& firstName, const std::string& lastName);
+void viewAllWorkshops(const WorkshopList &workshopList);
 
-export void viewAllWorkshops(const WorkshopList& workshopList);
+void viewOpenWorkshops(const WorkshopList &workshopList,
+                       const RegistrationManager &registrationManager);
 
-export void viewOpenWorkshops(const WorkshopList& workshopList, 
-  const RegistrationManager& registrationManager);
+void viewWorkshopsByPrice(const WorkshopList &workshopList);
 
-export void viewWorkshopsByPrice(const WorkshopList& workshopList);
+void viewParticipantWorkshops(const ParticipantList &participantList);
 
-export void viewParticipantWorkshops(const ParticipantList& participantList);
+void registerForWorkshop(const WorkshopList &workshopList,
+                         const ParticipantList &participantList,
+                         const RegistrationManager &registration);
 
-export void registerForWorkshop(const WorkshopList& workshopList,    
-  const ParticipantList& participantList,
-  const RegistrationManager& registration);
+void cancelWorkshop(const WorkshopList &workshopList,
+                    const ParticipantList &participantList,
+                    const RegistrationManager &registration);
 
-export void cancelWorkshop(const WorkshopList& workshopList,
-  const ParticipantList&  participantList,
-  const RegistrationManager& registration);
-
-
-#endif     
+#endif

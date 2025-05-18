@@ -52,12 +52,12 @@ void DataLoader::loadWorkshops(
         // Add to list
         workshopList.addWorkshop(
             Workshop(number, title,
-                hours, capacity, price));
+                     hours, capacity, price));
     }
 }
 
 void DataLoader::loadParticipants(
-    ParticipantList &participantList , ifstream &file)
+    ParticipantList &participantList, ifstream &file)
 {
     string line;
     while (getline(file, line))
@@ -83,5 +83,3 @@ void DataLoader::loadParticipants(
             Participant(id, firstName, lastName));
     }
 }
-
-
