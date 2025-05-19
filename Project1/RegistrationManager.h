@@ -24,7 +24,7 @@ class RegistrationManager
 {
 public:
     RegistrationManager(
-        const WorkshopList &newWorkshopList, const ParticipantList &newParticipantList)
+        const WorkshopList &newWorkshopList, ParticipantList &newParticipantList)
         : workshopList(newWorkshopList), participantList(newParticipantList) {}
 
     void addOpenWorkshop(int workshopNo);
