@@ -27,6 +27,8 @@ public:
 		WorkshopList &workshopList, std::ifstream &file);
 	static void loadParticipants(
 		ParticipantList &participantList, std::ifstream &file);
+	static void loadRegistration(
+		RegistrationManager &registrationManager, std::ifstream &file);
 };
 
 #endif
