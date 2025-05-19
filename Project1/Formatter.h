@@ -26,7 +26,6 @@ class Formatter
 
 public:
     static void displayMenu();
-    static int promptSelection();
     static void printAllWorkshops(const WorkshopList& workshopList);
     static void printOpenWorkshops(const WorkshopList& workshopList,
         const RegistrationManager& registration);

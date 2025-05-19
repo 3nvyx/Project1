@@ -33,19 +33,12 @@ using namespace std;
     cout << "\t7. Exit\n";
  }
 
- int Formatter::promptSelection() 
- {
-    int selection;
-    cout << "Please make a selection: ";
-    cin >> selection;
-    return selection;
- }
-
  void Formatter::printAllWorkshops(const WorkshopList& workshopList) 
  {
     if (workshopList.size() == 0) 
     {
-        cout << "ERROR: There are no workshops available.\n";
+        cout << "Workshop list is temporarily unavailable.
+                 Please try again later\n";
         return;
     }
 
@@ -53,19 +46,20 @@ using namespace std;
     cout << "(Workshop #) Workshop Name\n";
     cout << "------------------------------\n";
 
-    for (int i = 0; i < workshopList.size(); ++i) 
+    for (const Workshop& workshop) : workshopList.getAllWorkshops()
     {
-        const Workshop& list = workshopList.get(i);
-        cout << "(" << list.getNumber() << ") " << list.getTitle() << "\n";
+        cout << "(" << workshop.getNumber() << ") " << 
+        workshop.getTitle() << "\n";
     }
+
  }
 
  void Formatter::printOpenWorkshops(const WorkshopList& workshopList,
      const RegistrationManager& registration)
  {
-     if (workshopList.size() == 0)
+     if (registration.getOpenWorkshops().size() == 0)
      {
-         cout << "Workshop list is temporarily unavailable. Please try again later.\n";
+         cout << "There are no open workshops.\n";
          return;
      }
 
@@ -73,22 +67,11 @@ using namespace std;
      cout << "(Workshop #) Workshop Name\n";
      cout << "------------------------------\n";
 
-     bool anyPrinted = false;
-
-     for (int i = 0; i < workshopList.size(); ++i)
+     for (const Workshop& workshop : workshopList.getAllWorkshops())
      {
-         const Workshop& list = workshopList.get(i);
-         if (registration.isOpen(list.getNumber()))
-         {
-             cout << "(" << list.getNumber() << ") " << list.getTitle() << "\n";
-             anyPrinted = true;
-         }
+        cout << "(" << workshop.getNumber() << ") " << workshop.getTitle() << "\n";
      }
 
-     if (!anyPrinted)
-     {
-         cout << "There are no open workshops.\n";
-     }
  }
 
  void Formatter::printWorkshopsByPrice(const WorkshopList& workshopList, 
@@ -96,20 +79,8 @@ using namespace std;
  {
     if (workshopList.size() == 0) 
     {
-        cout << "Workshop list is temporarily unavailable. Please try again later.\n";
-        return;
-    }
-
-    bool found = false;
-    for (int i = 0; i < workshopList.size(); ++i) {
-        if (workshopList.get(i).getPrice() <= price) {
-            found = true;
-            break;
-        }
-    }
-
-    if (!found) {
-        cout << "There are no workshops at or below that price.\n";
+        cout << "Workshop list is temporarily unavailable. 
+        Please try again later.\n";
         return;
     }
 
@@ -117,21 +88,20 @@ using namespace std;
     cout << "(Workshop #) $Price Workshop Name\n";
     cout << "------------------------------\n";
 
-    for (int i = 0; i < workshopList.size(); ++i) 
+    for (const Workshop& workshop) : workshopList.getAllWorkshops()
     {
-        const Workshop& list = workshopList.get(i);
-        if (list.getPrice() <= price) {
-            cout << "$" << list.getPrice() << "(" << list.getNumber() << ")" 
-                << list.getTitle() << "\n";
+        if(workshop.getPrice <= price)
+        {
+            cout << "$" << workshop.getPrice() << "(" << workshop.getNumber() << ")"
+            << workshop.getTitle() << endl;
         }
     }
  }
 
  void Formatter::printParticipantWorkshops(const ParticipantList& participantList, int participantID)
  {
-     const WorkshopList& list = participantList.getWorkshops(participantID);
 
-     if (list.size() == 0)
+     if (participantList.size() == 0)
      {
          cout << "You are not currently registered for any workshops.\n";
          return;
@@ -141,10 +111,9 @@ using namespace std;
      cout << "(Workshop #) Workshop Name\n";
      cout << "------------------------------\n";
 
-     for (int i = 0; i < list.size(); ++i)
+     for (const Workshop& workshop : participantList.getWorkshops(participantID))
      {
-         const Workshop& w = list.get(i);
-         cout << "(" << w.getNumber() << ") " << w.getTitle() << "\n";
+        cout << "(" << workshop.getNumber() << ") " << workshop.getTitle() << "\n";
      }
  }
 
