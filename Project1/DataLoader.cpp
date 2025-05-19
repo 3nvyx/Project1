@@ -85,8 +85,8 @@ void DataLoader::loadParticipants(
 }
 
 void DataLoader::loadRegistration(
-    RegistrationManager &registrationManager, 
-        ifstream &file)
+    RegistrationManager &registrationManager,
+    ifstream &file)
 {
     string line;
     while (getline(file, line))
@@ -94,20 +94,19 @@ void DataLoader::loadRegistration(
         stringstream ss(line);
         string token;
 
-        int workshopNo, participantID
+        int workshopNo, participantID = 0;
 
-        //parse workshop #
+        // parse workshop #
         getline(ss, token, '|');
         workshopNo = stoi(token);
-            
-        //parse participant ID
+
+        // parse participant ID
         getline(ss, token, '|');
         participantID = stoi(token);
 
-        //add to registration manager object
-        registrationManager.addOpneWorkshop(workshopNo);
+        // add to registration manager object
+        registrationManager.addOpenWorkshop(workshopNo);
         registrationManager.registerParticipant(
             workshopNo, participantID);
-        
     }
 }
