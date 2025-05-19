@@ -19,6 +19,7 @@
 #include <fstream>
 #include "WorkshopList.h"
 #include "ParticipantList.h"
+#include "RegistrationManager.h"
 
 class DataLoader
 {
