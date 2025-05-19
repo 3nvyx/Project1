@@ -43,7 +43,7 @@ private:
     std::map<int, std::set<int>> registration;
     std::set<int> openWorkshops;
     const WorkshopList &workshopList;
-    const ParticipantList &participantList;
+    ParticipantList &participantList;
 };
 
 #endif
