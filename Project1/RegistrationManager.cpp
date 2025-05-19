@@ -14,25 +14,27 @@
 
 #include "RegistrationManager.h"
 
-using namespace std
+using namespace std;
 
 void RegistrationManager::addOpenWorkshop(int workshopNo)
 {
 	openWorkshops.insert(workshopNo);
-	registration.insert(worshopNo, set<int> participantIDs {});
+	registration.insert({workshopNo, set<int>{}});
 }
 
 void RegistrationManager::registerParticipant(int workshopNo,
                              int participantID)
 {
-	*registration.find(workshopNo).second.insert(participantID);
+	registration[workshopNo].insert(participantID);
+
 	participantList.addWorkshopToParticipant(
-		participantList.getParticipant(participantID), 
-		workshopList.getWorkshop(workshopNo));
-	if (*registration.find(workshopNo).second.size()
-		>= workshopList.getWorkshop(workshopNo).getCapacity())
+			participantList.getParticipant(participantID), 
+			workshopList.getWorkshop(workshopNo)
+		);
+	if (static_cast<int>(registration[workshopNo].size()) >=
+		workshopList.getWorkshop(workshopNo).getCapacity())
 	{
-		openWorkshops.closeWorkshop(workshopNo);
+		closeWorkshop(workshopNo);
 	}
 	
 }
@@ -40,12 +42,14 @@ void RegistrationManager::registerParticipant(int workshopNo,
 void RegistrationManager::unregisterParticipant(int workshopNo,
                                int participantID)
 {
-	*registration.find(workshopNo).second.erase(participantID);
-	if (*registration.find(workshopNo).second.size() 
-		< workshopList.getWorkshop(workshopNo).getCapacity())
+	registration[workshopNo].erase(participantID);
+
+	if (static_cast<int>(registration[workshopNo].size()) <
+		workshopList.getWorkshop(workshopNo).getCapacity())
 	{
-		openWorkshops.reopenWorkshops(workshopNo);
+		reopenWorkshop(workshopNo);
 	}
+
 	participantList.cancelWorkshop(participantID, workshopNo);
 }
 
@@ -61,10 +65,10 @@ void RegistrationManager::reopenWorkshop(int workshopNo)
 
 bool RegistrationManager::isOpen(int workshopNo) const
 {
-	return openWorkshop.find(workshopNo) != openWorkshop.end();
+	return openWorkshops.find(workshopNo) != openWorkshops.end();
 }
 
-const std::set<int>& RegistrationManager::getOpenWorkshop() const
+const std::set<int>& RegistrationManager::getOpenWorkshops() const
 {
-	return openWorkshop;
+	return openWorkshops;
 }
