@@ -25,11 +25,11 @@ void RegistrationManager::addOpenWorkshop(int workshopNo)
 void RegistrationManager::registerParticipant(int workshopNo,
                              int participantID)
 {
-	*registration.find(workshopNo).insert(participantID);
+	*registration.find(workshopNo).second.insert(participantID);
 	participantList.addWorkshopToParticipant(
 		participantList.getParticipant(participantID), 
 		workshopList.getWorkshop(workshopNo));
-	if (*registration.find(workshopNo).second.size() 
+	if (*registration.find(workshopNo).second.size()
 		>= workshopList.getWorkshop(workshopNo).getCapacity())
 	{
 		openWorkshops.closeWorkshop(workshopNo);
@@ -40,9 +40,9 @@ void RegistrationManager::registerParticipant(int workshopNo,
 void RegistrationManager::unregisterParticipant(int workshopNo,
                                int participantID)
 {
-	*registration.find(workshopNo).erase(participantID);
+	*registration.find(workshopNo).second.erase(participantID);
 	if (*registration.find(workshopNo).second.size() 
-		< workshopList.getWorkshop(workshopNo).getCapacity()
+		< workshopList.getWorkshop(workshopNo).getCapacity())
 	{
 		openWorkshops.reopenWorkshops(workshopNo);
 	}
