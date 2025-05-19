@@ -17,6 +17,7 @@
 
 #include "WorkshopList.h"
 #include "Workshop.h"
+#include "Formatter.h"
 #include "RegistrationManager.h"
 #include "ParticipantList.h"
 
@@ -25,6 +26,7 @@ class Formatter
 
 public:
     static void displayMenu();
+    static int promptSelection();
     static void printAllWorkshops(const WorkshopList& workshopList);
     static void printOpenWorkshops(const WorkshopList& workshopList,
         const RegistrationManager& registration);
