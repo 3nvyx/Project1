@@ -37,7 +37,7 @@ public:
 
     bool isOpen(int workshopNo) const;
 
-    const std::set<int>& getOpenWorkshop() const;
+    const std::set<int>& getOpenWorkshops() const;
 
 private:
     std::map<int, std::set<int>> registration;
