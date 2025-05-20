@@ -58,11 +58,17 @@ const Participant &ParticipantList::getParticipant(int id) const
 
 void ParticipantList::cancelWorkshop(int id, int workshopNo)
 {
-    vector<Workshop> workshops = getWorkshops(id);
-    remove_if(
+    Participant participant = getParticipant(id);
+    auto participantIter = participantList.find(participant);
+
+    vector<Workshop> &workshops = participantIter->second;
+
+    auto workshopIter = remove_if(
         workshops.begin(), workshops.end(),
-        [workshopNo](Workshop workshop)
+        [workshopNo](const Workshop &workshop)
         { return workshop.getNumber() == workshopNo; });
+
+    workshops.erase(workshopIter);
 }
 
 bool ParticipantList::isEmpty() const
