@@ -22,6 +22,8 @@
 #include "DataLoader.h"
 #include "Interface.h"
 
+using namespace std;
+
 int main()
 {
     WorkshopList workshopList;
@@ -34,6 +36,10 @@ int main()
     DataLoader::loadRegistration(regManager, "registration_database.txt");
 
     processMenu(workshopList, participantList, regManager);
+
+    cout << endl
+         << endl;
+    system("Pause");
 
     return 0;
 }

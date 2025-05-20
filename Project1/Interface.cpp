@@ -57,7 +57,7 @@ void processMenu(
       cancelWorkshop(workshopList, participantList, registrationManager);
       break;
     case 7:
-      cout << "Thank you for visiting!" << "\n\n";
+      cout << "Thank you for visiting!";
       break;
     default:
       cerr << "Invalid selection. Please try again." << endl;
