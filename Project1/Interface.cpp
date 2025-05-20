@@ -27,7 +27,7 @@ void processMenu(
     ParticipantList &participantList,
     RegistrationManager &registrationManager)
 {
-  int choice;
+  int choice{0};
 
   do
   {
@@ -57,7 +57,7 @@ void processMenu(
       cancelWorkshop(workshopList, participantList, registrationManager);
       break;
     case 7:
-      cout << "Thank you for visiting!" << endl;
+      cout << "Thank you for visiting!" << "\n\n";
       break;
     default:
       cerr << "Invalid selection. Please try again." << endl;
@@ -71,7 +71,7 @@ void processMenu(
 }
 
 void getIdentification(
-    int &id, std::string &firstName, std::string &lastName)
+    int &id, string &firstName, string &lastName)
 {
   cout << "Enter your ID: ";
   cin >> id;
@@ -86,7 +86,7 @@ void getIdentification(
 
 bool verifyIdentification(
     const ParticipantList &participantList,
-    int id, const std::string &firstName, const std::string &lastName)
+    int id, const string &firstName, const string &lastName)
 {
   const Participant &participant = participantList.getParticipant(id);
 
@@ -115,7 +115,7 @@ void viewOpenWorkshops(
 
 void viewWorkshopsByPrice(const WorkshopList &workshopList)
 {
-  double maxPrice = 0.0;
+  double maxPrice{0.0};
   string priceInput;
 
   cout << "Enter max price: $";
@@ -134,8 +134,8 @@ void viewWorkshopsByPrice(const WorkshopList &workshopList)
 
 void viewParticipantWorkshops(const ParticipantList &participantList)
 {
-  int id;
-  std::string firstName, lastName;
+  int id{0};
+  string firstName, lastName;
   getIdentification(id, firstName, lastName);
 
   if (verifyIdentification(participantList, id, firstName, lastName))
@@ -144,8 +144,7 @@ void viewParticipantWorkshops(const ParticipantList &participantList)
   }
   else
   {
-    cerr << "The ID number does not match the name provided." << endl;
-    cout << endl;
+    cerr << "The ID number does not match the name provided." << "\n\n";
   }
 }
 
@@ -154,14 +153,13 @@ void registerForWorkshop(
     ParticipantList &participantList,
     RegistrationManager &registration)
 {
-  cout << "Let's register you for a workshop!" << endl;
-  cout << endl;
+  cout << "Let's register you for a workshop!" << "\n\n";
 
   viewOpenWorkshops(workshopList, registration);
 
   // Get workshop number
   cout << "Enter the workshop number or '0' to cancel: ";
-  int workshopNumber;
+  int workshopNumber{0};
   cin >> workshopNumber;
   cout << endl;
 
@@ -170,7 +168,7 @@ void registerForWorkshop(
   {
     // Get identification info
     int id{0};
-    std::string firstName, lastName;
+    string firstName, lastName;
     getIdentification(id, firstName, lastName);
 
     // Verify identification
@@ -184,14 +182,15 @@ void registerForWorkshop(
       Workshop selectedWorkshop = workshopList.getWorkshop(workshopNumber);
 
       // Register participant
-      participantList.addWorkshopToParticipant(participantList.getParticipant(id), selectedWorkshop);
+      participantList.addWorkshopToParticipant(
+          participantList.getParticipant(id), selectedWorkshop);
       registration.registerParticipant(workshopNumber, id);
 
       // Print confirmation
-      cout << "You are registered for the following workshop:\n" << endl;
+      cout << "You are registered for the following workshop:\n\n";
       Formatter::printWorkshop(selectedWorkshop);
-      cout << "A confirmation email with payment details has been sent to you." << endl;
-      cout << endl;
+      cout << "A confirmation email with payment details has been sent to you."
+           << "\n\n";
     }
   }
 }
@@ -202,8 +201,8 @@ void cancelWorkshop(
     RegistrationManager &registration)
 {
   // Get identification info
-  int id;
-  std::string firstName, lastName;
+  int id{0};
+  string firstName, lastName;
   getIdentification(id, firstName, lastName);
 
   // Verify identification
@@ -214,17 +213,18 @@ void cancelWorkshop(
   else
   {
     cout << "Which workshop would you like to cancel? ";
-    int workshopNumber;
+    int workshopNumber{0};
     cin >> workshopNumber;
 
-    cout << endl;
-    cout << "Your registration for the following workshop has been cancelled:" << endl;
+    cout << "\nYour registration for the following workshop has been cancelled:"
+         << endl;
     Formatter::printWorkshop(workshopList.getWorkshop(workshopNumber));
 
     // Unregister participant
-    registration.unregisterParticipant(id, workshopNumber);
+    registration.unregisterParticipant(workshopNumber, id);
 
     // Confirmation message
-    cout << "A confirmation email with refund details has been sent to you." << endl;
+    cout << "A confirmation email with refund details has been sent to you."
+         << "\n\n";
   }
 }

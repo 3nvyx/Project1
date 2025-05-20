@@ -66,16 +66,16 @@ const Workshop &WorkshopList::getWorkshop(int workshopNo) const
 	}
 }
 
-const std::set<Workshop> &WorkshopList::getAllWorkshops() const
+const set<Workshop> &WorkshopList::getAllWorkshops() const
 {
 	return workshopList;
 }
 
-
-
-std::set<Workshop>::const_iterator WorkshopList::findByNumber(int workshopNo) const
+set<Workshop>::const_iterator
+WorkshopList::findByNumber(int workshopNo) const
 {
-	return find_if(workshopList.begin(), workshopList.end(),
-								 [workshopNo](const Workshop &workshop)
-								 { return workshop.getNumber() == workshopNo; });
+	return find_if(
+		workshopList.begin(), workshopList.end(),
+		[workshopNo](const Workshop &workshop)
+		{ return workshop.getNumber() == workshopNo; });
 }

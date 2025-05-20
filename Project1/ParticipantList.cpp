@@ -13,17 +13,20 @@
 */
 
 #include "ParticipantList.h"
+
 #include <algorithm>
 
 using namespace std;
 
 void ParticipantList::addParticipant(const Participant &participant)
 {
-    participantList.insert(pair<Participant, vector<Workshop>>(participant, {}));
+    participantList.insert(
+        pair<Participant, vector<Workshop>>(participant, {}));
 }
 
 // participant: Participant, workshop: Workshop
-void ParticipantList::addWorkshopToParticipant(const Participant &participant, const Workshop &workshop)
+void ParticipantList::addWorkshopToParticipant(
+    const Participant &participant, const Workshop &workshop)
 {
     participantList[participant].push_back(workshop);
 }
@@ -56,9 +59,10 @@ const Participant &ParticipantList::getParticipant(int id) const
 void ParticipantList::cancelWorkshop(int id, int workshopNo)
 {
     vector<Workshop> workshops = getWorkshops(id);
-    remove_if(workshops.begin(), workshops.end(),
-              [workshopNo](Workshop workshop)
-              { return workshop.getNumber() == workshopNo; });
+    remove_if(
+        workshops.begin(), workshops.end(),
+        [workshopNo](Workshop workshop)
+        { return workshop.getNumber() == workshopNo; });
 }
 
 bool ParticipantList::isEmpty() const
@@ -71,11 +75,11 @@ void ParticipantList::clearList()
     participantList.clear();
 }
 
-std::map<Participant, std::vector<Workshop>>::const_iterator ParticipantList::findByID(int id) const
+map<Participant, vector<Workshop>>::const_iterator
+ParticipantList::findByID(int id) const
 {
-    return find_if(participantList.begin(), participantList.end(),
-                   [id](const pair<Participant, vector<Workshop>> &element)
-                   {
-                       return element.first.getID() == id;
-                   });
+    return find_if(
+        participantList.begin(), participantList.end(),
+        [id](const pair<Participant, vector<Workshop>> &element)
+        { return element.first.getID() == id; });
 }

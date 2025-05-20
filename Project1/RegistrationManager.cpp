@@ -19,28 +19,27 @@ using namespace std;
 void RegistrationManager::addOpenWorkshop(int workshopNo)
 {
 	openWorkshops.insert(workshopNo);
-	registration.insert({ workshopNo, set<int>{} });
+	registration.insert({workshopNo, set<int>{}});
 }
 
-void RegistrationManager::registerParticipant(int workshopNo,
-	int participantID)
+void RegistrationManager::registerParticipant(
+	int workshopNo, int participantID)
 {
 	registration[workshopNo].insert(participantID);
 
 	participantList.addWorkshopToParticipant(
 		participantList.getParticipant(participantID),
-		workshopList.getWorkshop(workshopNo)
-	);
+		workshopList.getWorkshop(workshopNo));
+
 	if (static_cast<int>(registration[workshopNo].size()) >=
 		workshopList.getWorkshop(workshopNo).getCapacity())
 	{
 		closeWorkshop(workshopNo);
 	}
-
 }
 
-void RegistrationManager::unregisterParticipant(int workshopNo,
-	int participantID)
+void RegistrationManager::unregisterParticipant(
+	int workshopNo, int participantID)
 {
 	registration[workshopNo].erase(participantID);
 
@@ -68,7 +67,7 @@ bool RegistrationManager::isOpen(int workshopNo) const
 	return openWorkshops.find(workshopNo) != openWorkshops.end();
 }
 
-const std::set<int>& RegistrationManager::getOpenWorkshops() const
+const set<int> &RegistrationManager::getOpenWorkshops() const
 {
-	return openWorkshop;
+	return openWorkshops;
 }

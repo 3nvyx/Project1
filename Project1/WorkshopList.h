@@ -16,26 +16,28 @@
 #define WORKSHOPLIST_H
 
 #include "Workshop.h"
+
 #include <set>
 
 class WorkshopList
 {
 public:
 	void addWorkshop(const Workshop &workshop);
+
 	int getNumber(const Workshop &workshop) const;
 	std::string getTitle(int workshopNo) const;
 	int getHours(int workshopNo) const;
 	int getCapacity(int workshopNo) const;
 	double getPrice(int workshopNo) const;
-	bool isEmpty() const;
-	void clearList();
 	const Workshop &getWorkshop(int workshopNo) const;
 	const std::set<Workshop> &getAllWorkshops() const;
 
-	~WorkshopList() {}
+	bool isEmpty() const;
+	void clearList();
 
 private:
 	std::set<Workshop>::const_iterator findByNumber(int workshopNo) const;
+
 	std::set<Workshop> workshopList;
 };
 

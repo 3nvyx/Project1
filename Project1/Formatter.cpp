@@ -13,14 +13,14 @@
 */
 
 #include "Formatter.h"
+
 #include <iostream>
 #include <iomanip>
-#include <limits>
 
-using namespace std; 
+using namespace std;
 
- void Formatter::displayMenu() 
- {
+void Formatter::displayMenu()
+{
     cout << "*********************************************\n";
     cout << "\t\tWORKSHOP HUB\n";
     cout << "*********************************************\n";
@@ -32,115 +32,118 @@ using namespace std;
     cout << "\t6. Cancel registration\n";
     cout << "\t7. Exit\n";
     cout << "\n";
- }
-
- void Formatter::printAllWorkshops(const WorkshopList& workshopList)
- {
-     if (workshopList.isEmpty())
-     {
-         cout << "\n\tWorkshop list is temporarily unavailable."
-             << " Please try again later.\n";
-         return;
-     }
-
-     cout << "\tALL WORKSHOPS\n";
-     cout << "\t(Workshop #) Workshop Name\n";
-     cout << "\t------------------------------\n";
-
-     for (const Workshop& workshop : workshopList.getAllWorkshops())
-     {
-         cout << "\t(" << workshop.getNumber() << ") "
-             << workshop.getTitle() << "\n";
-     }
-
-     cout << endl;
- }
-
-void Formatter::printOpenWorkshops(const WorkshopList& workshopList,
-    const RegistrationManager& registration)
-{
-    if (registration.getOpenWorkshops().empty())
-    {
-        cout << "\n\tThere are no open workshops.\n";
-        return;
-    }
-
-    cout << "\tOPEN WORKSHOPS\n";
-    cout << "\t(Workshop #) Workshop Name\n";
-    cout << "\t------------------------------\n";
-
-    for (const Workshop& workshop : workshopList.getAllWorkshops())
-    {
-        if (registration.isOpen(workshop.getNumber()))
-        {
-            cout << "\t(" << workshop.getNumber() << ") "
-            << workshop.getTitle() << "\n";
-        }
-    }
-    cout << "\n";
 }
 
-
-void Formatter::printWorkshopsByPrice(const WorkshopList& workshopList, 
-    double price)
+void Formatter::printAllWorkshops(const WorkshopList &workshopList)
 {
     if (workshopList.isEmpty())
     {
         cout << "\n\tWorkshop list is temporarily unavailable."
-            << " Please try again later.\n";
-        return;
+             << " Please try again later.\n";
     }
-
-    cout << "\n\tWORKSHOPS BY PRICE\n";
-    cout << "\t(Workshop #) $Price Workshop Name\n";
-    cout << "\t------------------------------\n";
-
-    for (const Workshop& workshop : workshopList.getAllWorkshops())
+    else
     {
-        if (workshop.getPrice() <= price)
-        {
-            cout << "\t(" << workshop.getNumber() << ") $"
-                << fixed << setprecision(2)
-                << workshop.getPrice() << " "
-                << workshop.getTitle() << "\n";
-        }
-    }
+        cout << "\tALL WORKSHOPS\n";
+        cout << "\t(Workshop #) Workshop Name\n";
+        cout << "\t------------------------------\n";
 
-    cout << endl;
+        for (const Workshop &workshop : workshopList.getAllWorkshops())
+        {
+            cout << "\t(" << workshop.getNumber() << ") "
+                 << workshop.getTitle() << "\n";
+        }
+
+        cout << endl;
+    }
 }
 
+void Formatter::printOpenWorkshops(
+    const WorkshopList &workshopList, const RegistrationManager &registration)
+{
+    if (registration.getOpenWorkshops().empty())
+    {
+        cout << "\n\tThere are no open workshops.\n";
+    }
+    else
+    {
+        cout << "\tOPEN WORKSHOPS\n";
+        cout << "\t(Workshop #) Workshop Name\n";
+        cout << "\t------------------------------\n";
 
- void Formatter::printParticipantWorkshops(const ParticipantList& participantList, int participantID)
- {
-     auto workshops = participantList.getWorkshops(participantID);
-     if (workshops.empty())
-     {
-         cout << "\n\tYou are not currently registered for any workshops.\n";
-         return;
-     }
+        for (const Workshop &workshop : workshopList.getAllWorkshops())
+        {
+            if (registration.isOpen(workshop.getNumber()))
+            {
+                cout << "\t(" << workshop.getNumber() << ") "
+                     << workshop.getTitle() << "\n";
+            }
+        }
+        cout << "\n";
+    }
+}
 
-     cout << "\n\tYOUR WORKSHOPS\n";
-     cout << "(Workshop #) Workshop Name\n";
-     cout << "------------------------------\n";
+void Formatter::printWorkshopsByPrice(
+    const WorkshopList &workshopList, double price)
+{
+    if (workshopList.isEmpty())
+    {
+        cout << "\n\tWorkshop list is temporarily unavailable."
+             << " Please try again later.\n";
+    }
+    else
+    {
+        cout << "\n\tWORKSHOPS BY PRICE\n";
+        cout << "\t(Workshop #) $Price Workshop Name\n";
+        cout << "\t------------------------------\n";
 
-     for (const Workshop& workshop : participantList.getWorkshops(participantID))
-     {
-        cout << "\t(" << workshop.getNumber() << ") " << workshop.getTitle() << "\n";
-     }
- }
+        for (const Workshop &workshop : workshopList.getAllWorkshops())
+        {
+            if (workshop.getPrice() <= price)
+            {
+                cout << "\t(" << workshop.getNumber() << ") $"
+                     << fixed << setprecision(2)
+                     << workshop.getPrice() << " "
+                     << workshop.getTitle() << "\n";
+            }
+        }
 
- void Formatter::printWorkshop(const Workshop& workshop)
- {
-     cout << "\t" << workshop.getTitle() << "\n";
-     cout << "\tNumber: " << workshop.getNumber() << "\n";
-     cout << "\tHours: " << workshop.getHours() << "\n";
-     cout << "\tPrice: $" << fixed << setprecision(2) << workshop.getPrice() << "\n";
-     cout << endl;
- }
+        cout << endl;
+    }
+}
 
- void Formatter::pauseAndWait()
- {
-     cout << "Press 'Enter' to return to the menu...\n";
-     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-     cin.get();
- }
+void Formatter::printParticipantWorkshops(const ParticipantList &participantList, int participantID)
+{
+    auto workshops = participantList.getWorkshops(participantID);
+    if (workshops.empty())
+    {
+        cout << "\n\tYou are not currently registered for any workshops.\n";
+    }
+    else
+    {
+        cout << "\tYOUR WORKSHOPS\n";
+        cout << "\t(Workshop #) Workshop Name\n";
+        cout << "\t------------------------------\n";
+
+        for (const Workshop &workshop : participantList.getWorkshops(participantID))
+        {
+            cout << "\t(" << workshop.getNumber() << ") " << workshop.getTitle() << "\n";
+        }
+
+        cout << endl;
+    }
+}
+
+void Formatter::printWorkshop(const Workshop &workshop)
+{
+    cout << "\t" << workshop.getTitle() << "\n";
+    cout << "\tNumber: " << workshop.getNumber() << "\n";
+    cout << "\tHours: " << workshop.getHours() << "\n";
+    cout << "\tPrice: $" << fixed << setprecision(2) << workshop.getPrice() << "\n\n";
+}
+
+void Formatter::pauseAndWait()
+{
+    cout << "Press 'Enter' to return to the menu...\n";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
+}

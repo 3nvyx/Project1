@@ -1,15 +1,15 @@
-﻿    /*
-    Mew Mew
+﻿/*
+Mew Mew
 
-    Doan, Kevin
-    Nguyen, Long (Eric)
-    Truong, Jeffrey
-    Vu, Richard
+Doan, Kevin
+Nguyen, Long (Eric)
+Truong, Jeffrey
+Vu, Richard
 
-    Spring 2025
-    CS A250 - C++ 2
+Spring 2025
+CS A250 - C++ 2
 
-    Workshop Hub
+Workshop Hub
 */
 
 #include "DataLoader.h"
@@ -19,113 +19,103 @@
 using namespace std;
 
 void DataLoader::loadWorkshops(
-    WorkshopList& workshopList,
-    const string& filename)
+    WorkshopList &workshopList, const string &filename)
 {
     ifstream file(filename);
-    if (!file) {
+    if (!file)
+    {
         cerr << "Could not open " << filename << "\n";
-        return;
     }
+    else
+    {
+        string line;
+        while (getline(file, line))
+        {
+            stringstream ss(line);
+            string token;
 
-    string line;
-    while (getline(file, line)) {
-        stringstream ss(line);
-        string token;
+            int number, hours, capacity;
+            double price;
+            string title;
 
-        int number, hours, capacity;
-        double price;
-        string title;
+            getline(ss, token, '|');
+            number = stoi(token);
+            getline(ss, title, '|');
+            getline(ss, token, '|');
+            hours = stoi(token);
+            getline(ss, token, '|');
+            capacity = stoi(token);
+            getline(ss, token, '|');
+            price = stod(token);
 
-        getline(ss, token, '|');
-        number = stoi(token);
-        getline(ss, title, '|');
-        getline(ss, token, '|'); hours = stoi(token);
-        getline(ss, token, '|'); capacity = stoi(token);
-        getline(ss, token, '|'); price = stod(token);
-
-        workshopList.addWorkshop(
-            Workshop(number, title, hours, capacity, price)
-        );
+            workshopList.addWorkshop(
+                Workshop(number, title, hours, capacity, price));
+        }
     }
 }
 
 void DataLoader::loadParticipants(
-    ParticipantList& participantList,
-    const string& filename)
+    ParticipantList &participantList, const string &filename)
 {
     ifstream file(filename);
-    if (!file) {
+    if (!file)
+    {
         cerr << "Could not open " << filename << "\n";
-        return;
     }
+    else
+    {
+        string line;
+        while (getline(file, line))
+        {
+            stringstream ss(line);
+            string token;
+            int id;
+            string firstName, lastName;
 
-    string line;
-    while (getline(file, line)) {
-        stringstream ss(line);
-        string token;
-        int id;
-        string firstName, lastName;
+            getline(ss, token, '|');
+            id = stoi(token);
+            getline(ss, firstName, '|');
+            getline(ss, lastName, '|');
 
-        getline(ss, token, '|'); id = stoi(token);
-        getline(ss, firstName, '|');
-        getline(ss, lastName, '|');
-
-        participantList.addParticipant(
-            Participant(id, firstName, lastName)
-        );
+            participantList.addParticipant(
+                Participant(id, firstName, lastName));
+        }
     }
 }
 
 void DataLoader::loadRegistration(
-    RegistrationManager& regManager,
-    const string& filename)
+    RegistrationManager &regManager, const string &filename)
 {
     ifstream file(filename);
-    if (!file) {
+    if (!file)
+    {
         cerr << "Could not open " << filename << "\n";
-        return;
     }
-
-    string line;
-    while (getline(file, line)) {
-        if (line.empty()) continue;
-
-        stringstream ss(line);
-        string token;
-
-        // 1) Read the workshop number
-        if (!getline(ss, token, '|'))
-            continue;
-
-        int workshopNo;
-        try {
-            workshopNo = stoi(token);
-        }
-        catch (invalid_argument&) {
-            // malformed workshop number → skip line
-            continue;
-        }
-
-        // 2) Always add the workshop as open,
-        //    even if there are zero registrations on this line.
-        regManager.addOpenWorkshop(workshopNo);
-
-        // 3) Now consume _all_ remaining tokens as possible participant IDs
-        while (getline(ss, token, '|')) {
-            if (token.empty()) {
-                // skip blank entries
+    else
+    {
+        string line;
+        while (getline(file, line))
+        {
+            if (line.empty())
                 continue;
-            }
-            int participantID;
-            try {
-                participantID = stoi(token);
-            }
-            catch (invalid_argument&) {
-                // skip any non-numeric token
+
+            stringstream ss(line);
+            string token;
+
+            if (!getline(ss, token, '|'))
                 continue;
+
+            int workshopNo = stoi(token);
+            regManager.addOpenWorkshop(workshopNo);
+
+            while (getline(ss, token, '|'))
+            {
+                if (token.empty())
+                    continue;
+
+                int participantID = stoi(token);
+                regManager.registerParticipant(workshopNo, participantID);
             }
-            regManager.registerParticipant(workshopNo, participantID);
         }
     }
 }

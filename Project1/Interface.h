@@ -54,9 +54,4 @@ void cancelWorkshop(
     const ParticipantList &participantList,
     RegistrationManager &registration);
 
-//void cancelRegistration(
-//    const WorkshopList & workshopList,
-//    ParticipantList & participantList,
-//    RegistrationManager & registration);
-
 #endif
