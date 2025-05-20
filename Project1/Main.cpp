@@ -13,14 +13,14 @@
 */
 
 #include <iostream>
-#include <limits>
 #include <string>
+
 #include "WorkshopList.h"
 #include "ParticipantList.h"
 #include "RegistrationManager.h"
 #include "Formatter.h"
 #include "DataLoader.h"
-#include "Interface.h" 
+#include "Interface.h"
 
 int main()
 {
