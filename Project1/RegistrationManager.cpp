@@ -70,5 +70,5 @@ bool RegistrationManager::isOpen(int workshopNo) const
 
 const std::set<int>& RegistrationManager::getOpenWorkshops() const
 {
-	return openWorkshops;
+	return openWorkshop;
 }
