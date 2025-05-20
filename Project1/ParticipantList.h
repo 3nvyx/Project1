@@ -24,22 +24,22 @@
 class ParticipantList
 {
 public:
-	void addParticipant(const Participant &);
-	void addWorkshopToParticipant(const Participant &, const Workshop &);
+	void addParticipant(const Participant &participant);
+	void addWorkshopToParticipant(const Participant &participant, const Workshop &workshop);
 
-	int getID(const Participant &) const;
-	std::string getFirstName(int) const;
-	std::string getLastName(int) const;
-	std::vector<Workshop> getWorkshops(int) const;
-	const Participant &getParticipant(int) const;
+	int getID(const Participant &participant) const;
+	std::string getFirstName(int participantID) const;
+	std::string getLastName(int participantID) const;
+	std::vector<Workshop> getWorkshops(int workshopNo) const;
+	const Participant &getParticipant(int participantID) const;
 
-	void cancelWorkshop(int, int);
+	void cancelWorkshop(int participantID, int workshopNo);
 	bool isEmpty() const;
 
 	void clearList();
 
 private:
-	std::map<Participant, std::vector<Workshop>>::const_iterator findByID(int id) const;
+	std::map<Participant, std::vector<Workshop>>::const_iterator findByID(int participantID) const;
 
 	std::map<Participant, std::vector<Workshop>> participantList;
 };

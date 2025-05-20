@@ -36,29 +36,29 @@ int ParticipantList::getID(const Participant &participant) const
     return participant.getID();
 }
 
-string ParticipantList::getFirstName(int id) const
+string ParticipantList::getFirstName(int participantID) const
 {
-    return findByID(id)->first.getFirstName();
+    return findByID(participantID)->first.getFirstName();
 }
 
-string ParticipantList::getLastName(int id) const
+string ParticipantList::getLastName(int participantID) const
 {
-    return findByID(id)->first.getLastName();
+    return findByID(participantID)->first.getLastName();
 }
 
-vector<Workshop> ParticipantList::getWorkshops(int id) const
+vector<Workshop> ParticipantList::getWorkshops(int participantID) const
 {
-    return findByID(id)->second;
+    return findByID(participantID)->second;
 }
 
-const Participant &ParticipantList::getParticipant(int id) const
+const Participant &ParticipantList::getParticipant(int participantID) const
 {
-    return findByID(id)->first;
+    return findByID(participantID)->first;
 }
 
-void ParticipantList::cancelWorkshop(int id, int workshopNo)
+void ParticipantList::cancelWorkshop(int participantID, int workshopNo)
 {
-    Participant participant = getParticipant(id);
+    Participant participant = getParticipant(participantID);
     auto participantIter = participantList.find(participant);
 
     vector<Workshop> &workshops = participantIter->second;
@@ -82,10 +82,10 @@ void ParticipantList::clearList()
 }
 
 map<Participant, vector<Workshop>>::const_iterator
-ParticipantList::findByID(int id) const
+ParticipantList::findByID(int participantID) const
 {
     return find_if(
         participantList.begin(), participantList.end(),
-        [id](const pair<Participant, vector<Workshop>> &element)
-        { return element.first.getID() == id; });
+        [participantID](const pair<Participant, vector<Workshop>> &element)
+        { return element.first.getID() == participantID; });
 }
