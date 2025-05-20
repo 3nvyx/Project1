@@ -182,8 +182,6 @@ void registerForWorkshop(
       Workshop selectedWorkshop = workshopList.getWorkshop(workshopNumber);
 
       // Register participant
-      participantList.addWorkshopToParticipant(
-          participantList.getParticipant(id), selectedWorkshop);
       registration.registerParticipant(workshopNumber, id);
 
       // Print confirmation
