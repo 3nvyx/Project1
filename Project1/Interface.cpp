@@ -34,6 +34,7 @@ void processMenu(
     Formatter::displayMenu();
     cout << "Please make a selection: ";
     cin >> choice;
+    cout << endl;
 
     switch (choice)
     {
@@ -80,6 +81,7 @@ void getIdentification(
 
   cout << "Enter your last name: ";
   cin >> lastName;
+  cout << endl;
 }
 
 bool verifyIdentification(
@@ -116,7 +118,7 @@ void viewWorkshopsByPrice(const WorkshopList &workshopList)
   double maxPrice = 0.0;
   string priceInput;
 
-  cout << "Enter max price: ";
+  cout << "Enter max price: $";
   cin >> priceInput;
 
   // Remove $ if present
@@ -143,6 +145,7 @@ void viewParticipantWorkshops(const ParticipantList &participantList)
   else
   {
     cerr << "The ID number does not match the name provided." << endl;
+    cout << endl;
   }
 }
 
@@ -152,6 +155,7 @@ void registerForWorkshop(
     RegistrationManager &registration)
 {
   cout << "Let's register you for a workshop!" << endl;
+  cout << endl;
 
   viewOpenWorkshops(workshopList, registration);
 
@@ -159,6 +163,7 @@ void registerForWorkshop(
   cout << "Enter the workshop number or '0' to cancel: ";
   int workshopNumber;
   cin >> workshopNumber;
+  cout << endl;
 
   // Run only if not cancelled
   if (workshopNumber != 0)
@@ -180,12 +185,13 @@ void registerForWorkshop(
 
       // Register participant
       participantList.addWorkshopToParticipant(participantList.getParticipant(id), selectedWorkshop);
-      registration.registerParticipant(id, workshopNumber);
+      registration.registerParticipant(workshopNumber, id);
 
       // Print confirmation
-      cout << "You are registered for the following workshop:" << endl;
+      cout << "You are registered for the following workshop:\n" << endl;
       Formatter::printWorkshop(selectedWorkshop);
       cout << "A confirmation email with payment details has been sent to you." << endl;
+      cout << endl;
     }
   }
 }
@@ -211,6 +217,7 @@ void cancelWorkshop(
     int workshopNumber;
     cin >> workshopNumber;
 
+    cout << endl;
     cout << "Your registration for the following workshop has been cancelled:" << endl;
     Formatter::printWorkshop(workshopList.getWorkshop(workshopNumber));
 

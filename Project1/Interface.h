@@ -23,8 +23,8 @@
 
 void processMenu(
     const WorkshopList &workshopList,
-    const ParticipantList &participantList,
-    const RegistrationManager &registrationManager);
+    ParticipantList &participantList,
+    RegistrationManager &registrationManager);
 
 void getIdentification(
     int &id, std::string &firstName, std::string &lastName);
@@ -51,7 +51,12 @@ void registerForWorkshop(
 
 void cancelWorkshop(
     const WorkshopList &workshopList,
-    ParticipantList &participantList,
+    const ParticipantList &participantList,
     RegistrationManager &registration);
+
+//void cancelRegistration(
+//    const WorkshopList & workshopList,
+//    ParticipantList & participantList,
+//    RegistrationManager & registration);
 
 #endif
