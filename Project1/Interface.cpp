@@ -210,6 +210,8 @@ void cancelWorkshop(
     }
     else
     {
+        Formatter::printParticipantWorkshops(participantList, id);
+
         cout << "Which workshop would you like to cancel? ";
         int workshopNumber{0};
         cin >> workshopNumber;
