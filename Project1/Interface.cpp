@@ -185,7 +185,7 @@ void registerForWorkshop(
             registration.registerParticipant(workshopNumber, id);
 
             // Print confirmation
-            cout << "You are registered for the following workshop:\n\n";
+            cout << "You are registered for the following workshop:\n";
             Formatter::printWorkshop(selectedWorkshop);
             cout << "A confirmation email with payment details has been sent to you."
                  << "\n\n";
