@@ -21,7 +21,7 @@ using namespace std;
 
 void Formatter::displayMenu()
 {
-    cout << "*********************************************\n";
+    cout << "\n*********************************************\n";
     cout << "\t\tWORKSHOP HUB\n";
     cout << "*********************************************\n";
     cout << "\t1. View all workshops\n";
