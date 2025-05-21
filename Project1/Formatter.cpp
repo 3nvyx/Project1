@@ -135,7 +135,7 @@ void Formatter::printParticipantWorkshops(const ParticipantList &participantList
 
 void Formatter::printWorkshop(const Workshop &workshop)
 {
-    cout << "\t" << workshop.getTitle() << "\n";
+    cout << "\n\t" << workshop.getTitle() << "\n";
     cout << "\tNumber: " << workshop.getNumber() << "\n";
     cout << "\tHours: " << workshop.getHours() << "\n";
     cout << "\tPrice: $" << fixed << setprecision(2) << workshop.getPrice() << "\n\n";
@@ -143,7 +143,7 @@ void Formatter::printWorkshop(const Workshop &workshop)
 
 void Formatter::pauseAndWait()
 {
-    cout << "Press 'Enter' to return to the menu...\n";
+    cout << "Press 'Enter' to return to the menu...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
 }
