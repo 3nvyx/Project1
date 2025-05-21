@@ -214,8 +214,7 @@ void cancelWorkshop(
         int workshopNumber{0};
         cin >> workshopNumber;
 
-        cout << "\nYour registration for the following workshop has been cancelled:"
-             << endl;
+        cout << "\nYour registration for the following workshop has been cancelled:\n\n";
         Formatter::printWorkshop(workshopList.getWorkshop(workshopNumber));
 
         // Unregister participant

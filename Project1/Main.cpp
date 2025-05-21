@@ -37,8 +37,7 @@ int main()
 
     processMenu(workshopList, participantList, regManager);
 
-    cout << endl
-         << endl;
+    cout << endl;
     system("Pause");
 
     return 0;
