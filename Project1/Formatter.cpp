@@ -45,7 +45,7 @@ void Formatter::printAllWorkshops(const WorkshopList &workshopList)
     {
         cout << "\tALL WORKSHOPS\n";
         cout << "\t(Workshop #) Workshop Name\n";
-        cout << "\t------------------------------\n";
+        cout << "\t-----------------------------\n";
 
         for (const Workshop &workshop : workshopList.getAllWorkshops())
         {
@@ -94,7 +94,7 @@ void Formatter::printWorkshopsByPrice(
     {
         cout << "\n\tWORKSHOPS BY PRICE\n";
         cout << "\t(Workshop #) $Price Workshop Name\n";
-        cout << "\t--------------------------\n";
+        cout << "\t---------------------------------\n";
 
         for (const Workshop &workshop : workshopList.getAllWorkshops())
         {
