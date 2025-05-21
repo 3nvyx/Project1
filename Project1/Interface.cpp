@@ -153,7 +153,7 @@ void registerForWorkshop(
     ParticipantList &participantList,
     RegistrationManager &registration)
 {
-    cout << "Let's register you for a workshop!" << "\n\n";
+    cout << "\tLet's register you for a workshop!" << "\n\n";
 
     viewOpenWorkshops(workshopList, registration);
 
