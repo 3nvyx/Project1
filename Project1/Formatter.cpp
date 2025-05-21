@@ -38,7 +38,7 @@ void Formatter::printAllWorkshops(const WorkshopList &workshopList)
 {
     if (workshopList.isEmpty())
     {
-        cout << "\nWorkshop list is temporarily unavailable."
+        cout << "Workshop list is temporarily unavailable."
              << " Please try again later.\n\n";
     }
     else
