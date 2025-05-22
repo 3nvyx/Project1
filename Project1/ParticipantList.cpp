@@ -86,6 +86,7 @@ ParticipantList::findByID(int participantID) const
 {
     return find_if(
         participantList.begin(), participantList.end(),
-        [participantID](const pair<Participant, vector<Workshop>> &element)
+        [participantID](const pair<Participant, 
+            vector<Workshop>> &element)
         { return element.first.getID() == participantID; });
 }

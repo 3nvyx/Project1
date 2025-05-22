@@ -27,7 +27,8 @@ public:
 	std::string getFirstName() const { return firstName; }
 	std::string getLastName() const { return lastName; }
 
-	bool operator<(const Participant &participant) const { return id < participant.id; }
+	bool operator<(const Participant &participant) 
+		const { return id < participant.id; }
 
 private:
 	int id;

@@ -25,7 +25,8 @@ class ParticipantList
 {
 public:
 	void addParticipant(const Participant &participant);
-	void addWorkshopToParticipant(const Participant &participant, const Workshop &workshop);
+	void addWorkshopToParticipant(const Participant &participant, 
+		const Workshop &workshop);
 
 	int getID(const Participant &participant) const;
 	std::string getFirstName(int participantID) const;
@@ -39,7 +40,8 @@ public:
 	void clearList();
 
 private:
-	std::map<Participant, std::vector<Workshop>>::const_iterator findByID(int participantID) const;
+	std::map<Participant, std::vector<Workshop>>::const_iterator 
+		findByID(int participantID) const;
 
 	std::map<Participant, std::vector<Workshop>> participantList;
 };
