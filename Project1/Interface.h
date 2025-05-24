@@ -1,7 +1,7 @@
 /*
     Mew Mew
 
-    Doan, Kevin
+    Doan, Kevin (Team Leader)
     Nguyen, Long (Eric)
     Truong, Jeffrey
     Vu, Richard
@@ -49,7 +49,7 @@ void registerForWorkshop(
     ParticipantList &participantList,
     RegistrationManager &registration);
 
-void cancelWorkshop(
+void cancelRegistration(
     const WorkshopList &workshopList,
     const ParticipantList &participantList,
     RegistrationManager &registration);

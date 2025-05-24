@@ -1,7 +1,7 @@
 /*
     Mew Mew
 
-    Doan, Kevin
+    Doan, Kevin (Team Leader)
     Nguyen, Long (Eric)
     Truong, Jeffrey
     Vu, Richard
@@ -15,6 +15,9 @@
 #include "Formatter.h"
 
 #include <iostream>
+#include <string>
+#include <vector>
+#include <set>
 #include <iomanip>
 
 using namespace std;
@@ -58,7 +61,7 @@ void Formatter::printAllWorkshops(const WorkshopList &workshopList)
 }
 
 void Formatter::printOpenWorkshops(
-    const WorkshopList &workshopList, 
+    const WorkshopList &workshopList,
     const RegistrationManager &registration)
 {
     if (registration.getOpenWorkshops().empty())
@@ -119,7 +122,8 @@ void Formatter::printParticipantWorkshops(
     auto workshops = participantList.getWorkshops(participantID);
     if (workshops.empty())
     {
-        cout << "\nYou are not currently registered for any workshops.\n\n";
+        cout << "\nYou are not currently registered for any workshops."
+             << "\n\n";
     }
     else
     {
@@ -127,10 +131,11 @@ void Formatter::printParticipantWorkshops(
         cout << "\t(Workshop #) Workshop Name\n";
         cout << "\t--------------------------\n";
 
-        for (const Workshop &workshop : 
-            participantList.getWorkshops(participantID))
+        for (const Workshop &workshop :
+             participantList.getWorkshops(participantID))
         {
-            cout << "\t(" << workshop.getNumber() << ") " 
+            cout << "\t("
+                 << workshop.getNumber() << ") "
                  << workshop.getTitle() << "\n";
         }
 
@@ -143,13 +148,13 @@ void Formatter::printWorkshop(const Workshop &workshop)
     cout << "\n\t" << workshop.getTitle() << "\n";
     cout << "\tNumber: " << workshop.getNumber() << "\n";
     cout << "\tHours: " << workshop.getHours() << "\n";
-    cout << "\tPrice: $" << fixed << setprecision(2) 
+    cout << "\tPrice: $" << fixed << setprecision(2)
          << workshop.getPrice() << "\n\n";
 }
 
 void Formatter::pauseAndWait()
 {
     cout << "Press 'Enter' to return to the menu...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.ignore(1000, '\n');
     cin.get();
 }

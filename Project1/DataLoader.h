@@ -1,7 +1,7 @@
 /*
 	Mew Mew
 
-	Doan, Kevin
+	Doan, Kevin (Team Leader)
 	Nguyen, Long (Eric)
 	Truong, Jeffrey
 	Vu, Richard

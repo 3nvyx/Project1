@@ -1,7 +1,7 @@
 /*
     Mew Mew
 
-    Doan, Kevin
+    Doan, Kevin (Team Leader)
     Nguyen, Long (Eric)
     Truong, Jeffrey
     Vu, Richard
@@ -26,7 +26,8 @@ using namespace std;
 int main()
 {
     ParticipantList participantList;
-    DataLoader::loadParticipants(participantList, "participant_database.txt");
+    DataLoader::loadParticipants(
+        participantList, "participant_database.txt");
 
     WorkshopList workshopList;
     DataLoader::loadWorkshops(workshopList, "workshop_database.txt");
@@ -36,7 +37,8 @@ int main()
 
     processMenu(workshopList, participantList, regManager);
 
-    cout << endl << endl;
+    cout << endl
+         << endl;
     system("Pause");
     return 0;
 }

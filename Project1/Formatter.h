@@ -1,7 +1,7 @@
 /*
     Mew Mew
 
-    Doan, Kevin
+    Doan, Kevin (Team Leader)
     Nguyen, Long (Eric)
     Truong, Jeffrey
     Vu, Richard
@@ -16,8 +16,7 @@
 #define FORMATTER_H
 
 #include "WorkshopList.h"
-//#include "Workshop.h"
-//#include "Formatter.h"
+#include "Workshop.h"
 #include "RegistrationManager.h"
 #include "ParticipantList.h"
 

@@ -1,7 +1,7 @@
 /*
 	Mew Mew
 
-	Doan, Kevin
+	Doan, Kevin (Team Leader)
 	Nguyen, Long (Eric)
 	Truong, Jeffrey
 	Vu, Richard
@@ -23,28 +23,28 @@ void RegistrationManager::addOpenWorkshop(int workshopNo)
 }
 
 void RegistrationManager::registerParticipant(
-		int workshopNo, int participantID)
+	int workshopNo, int participantID)
 {
 	registration[workshopNo].insert(participantID);
 
 	participantList.addWorkshopToParticipant(
-			participantList.getParticipant(participantID),
-			workshopList.getWorkshop(workshopNo));
+		participantList.getParticipant(participantID),
+		workshopList.getWorkshop(workshopNo));
 
 	if (static_cast<int>(registration[workshopNo].size()) >=
-			workshopList.getWorkshop(workshopNo).getCapacity())
+		workshopList.getWorkshop(workshopNo).getCapacity())
 	{
 		closeWorkshop(workshopNo);
 	}
 }
 
 void RegistrationManager::unregisterParticipant(
-		int workshopNo, int participantID)
+	int workshopNo, int participantID)
 {
 	registration[workshopNo].erase(participantID);
 
 	if (static_cast<int>(registration[workshopNo].size()) <
-			workshopList.getWorkshop(workshopNo).getCapacity())
+		workshopList.getWorkshop(workshopNo).getCapacity())
 	{
 		reopenWorkshop(workshopNo);
 	}

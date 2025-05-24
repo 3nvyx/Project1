@@ -1,7 +1,7 @@
 /*
 	Mew Mew
 
-	Doan, Kevin
+	Doan, Kevin (Team Leader)
 	Nguyen, Long (Eric)
 	Truong, Jeffrey
 	Vu, Richard
@@ -12,8 +12,9 @@
 	Workshop Hub
 */
 
-#include "Workshop.h"
 #include "WorkshopList.h"
+
+#include <algorithm>
 
 using namespace std;
 

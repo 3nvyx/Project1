@@ -1,7 +1,7 @@
 /*
 	Mew Mew
 
-	Doan, Kevin
+	Doan, Kevin (Team Leader)
 	Nguyen, Long (Eric)
 	Truong, Jeffrey
 	Vu, Richard
@@ -20,14 +20,16 @@
 class Participant
 {
 public:
-	Participant(int newId, std::string newFirstName, std::string newLastName)
-		: id(newId), firstName(newFirstName), lastName(newLastName) {}
+	Participant(
+		int id, const std::string &theFirstName,
+		const std::string &theLastName)
+		: id(id), firstName(theFirstName), lastName(theLastName) {}
 
 	int getID() const { return id; }
 	std::string getFirstName() const { return firstName; }
 	std::string getLastName() const { return lastName; }
 
-	bool operator<(const Participant &participant) 
+	bool operator<(const Participant &participant)
 		const { return id < participant.id; }
 
 private:
