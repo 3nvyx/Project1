@@ -25,8 +25,10 @@ class RegistrationManager
 {
 public:
     RegistrationManager(
-        const WorkshopList &newWorkshopList, ParticipantList &newParticipantList)
-        : workshopList(newWorkshopList), participantList(newParticipantList) {}
+        const WorkshopList &newWorkshopList,
+        ParticipantList &newParticipantList)
+        : workshopList(newWorkshopList),
+          participantList(newParticipantList) {}
 
     void registerParticipant(
         int workshopNo, int participantID);
@@ -43,8 +45,10 @@ public:
 
 private:
     std::map<int, std::set<int>> registration;
+
     std::set<int> openWorkshops;
     const WorkshopList &workshopList;
+
     ParticipantList &participantList;
 };
 
