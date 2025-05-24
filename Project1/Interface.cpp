@@ -48,13 +48,15 @@ void processMenu(
             viewWorkshopsByPrice(workshopList);
             break;
         case 4:
-            registerForWorkshop(workshopList, participantList, registrationManager);
+            registerForWorkshop(
+                workshopList, participantList, registrationManager);
             break;
         case 5:
             viewParticipantWorkshops(participantList);
             break;
         case 6:
-            cancelWorkshop(workshopList, participantList, registrationManager);
+            cancelWorkshop(
+                workshopList, participantList, registrationManager);
             break;
         case 7:
             cout << "Thank you for visiting!";
@@ -144,7 +146,8 @@ void viewParticipantWorkshops(const ParticipantList &participantList)
     }
     else
     {
-        cerr << "The ID number does not match the name provided." << "\n\n";
+        cerr << "The ID number does not match the name provided."
+             << "\n\n";
     }
 }
 
@@ -172,23 +175,28 @@ void registerForWorkshop(
         getIdentification(id, firstName, lastName);
 
         // Verify identification
-        if (!verifyIdentification(participantList, id, firstName, lastName))
+        if (!verifyIdentification(
+                participantList, id, firstName, lastName))
         {
-            cerr << "The ID number does not match the name provided." << endl;
+            cerr << "The ID number does not match the name provided."
+                 << endl;
         }
         else
         {
             // Get selected workshop
-            Workshop selectedWorkshop = workshopList.getWorkshop(workshopNumber);
+            Workshop selectedWorkshop =
+                workshopList.getWorkshop(workshopNumber);
 
             // Register participant
             registration.registerParticipant(workshopNumber, id);
 
             // Print confirmation
             cout << "You are registered for the following workshop:\n";
+
             Formatter::printWorkshop(selectedWorkshop);
-            cout << "A confirmation email with payment details has been sent to you."
-                 << "\n\n";
+
+            cout << "A confirmation email with payment details "
+                 << "has been sent to you.\n\n";
         }
     }
 }
@@ -216,14 +224,16 @@ void cancelWorkshop(
         int workshopNumber{0};
         cin >> workshopNumber;
 
-        cout << "\nYour registration for the following workshop has been cancelled:\n";
-        Formatter::printWorkshop(workshopList.getWorkshop(workshopNumber));
+        cout << "\nYour registration for the following workshop "
+             << "has been cancelled:\n";
+        Formatter::printWorkshop(
+            workshopList.getWorkshop(workshopNumber));
 
         // Unregister participant
         registration.unregisterParticipant(workshopNumber, id);
 
         // Confirmation message
-        cout << "A confirmation email with refund details has been sent to you."
-             << "\n\n";
+        cout << "A confirmation email with refund details "
+             << "has been sent to you.\n\n";
     }
 }
