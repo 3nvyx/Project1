@@ -12,34 +12,31 @@
     Workshop Hub
 */
 
-#include <iostream>
-#include <string>
-
 #include "WorkshopList.h"
 #include "ParticipantList.h"
 #include "RegistrationManager.h"
-#include "Formatter.h"
 #include "DataLoader.h"
 #include "Interface.h"
+#include "Formatter.h"
+
+#include <iostream>
 
 using namespace std;
 
 int main()
 {
-    WorkshopList workshopList;
     ParticipantList participantList;
-
-    DataLoader::loadWorkshops(workshopList, "workshop_database.txt");
     DataLoader::loadParticipants(participantList, "participant_database.txt");
+
+    WorkshopList workshopList;
+    DataLoader::loadWorkshops(workshopList, "workshop_database.txt");
 
     RegistrationManager regManager(workshopList, participantList);
     DataLoader::loadRegistration(regManager, "registration_database.txt");
 
     processMenu(workshopList, participantList, regManager);
 
-    cout << endl
-         << endl;
+    cout << endl << endl;
     system("Pause");
-
     return 0;
 }

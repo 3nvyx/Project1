@@ -16,8 +16,8 @@
 #define FORMATTER_H
 
 #include "WorkshopList.h"
-#include "Workshop.h"
-#include "Formatter.h"
+//#include "Workshop.h"
+//#include "Formatter.h"
 #include "RegistrationManager.h"
 #include "ParticipantList.h"
 
@@ -28,7 +28,8 @@ public:
 
     static void printAllWorkshops(const WorkshopList &workshopList);
     static void printOpenWorkshops(
-        const WorkshopList &workshopList, const RegistrationManager &registration);
+        const WorkshopList &workshopList,
+        const RegistrationManager &registration);
     static void printWorkshopsByPrice(
         const WorkshopList &workshopList, double price);
     static void printParticipantWorkshops(
