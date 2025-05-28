@@ -42,7 +42,7 @@ void Formatter::printAllWorkshops(const WorkshopList &workshopList)
     if (workshopList.isEmpty())
     {
         cout << "Workshop list is temporarily unavailable."
-             << " Please try again later.\n\n";
+            << " Please try again later.\n\n";
     }
     else
     {
@@ -53,7 +53,7 @@ void Formatter::printAllWorkshops(const WorkshopList &workshopList)
         for (const Workshop &workshop : workshopList.getAllWorkshops())
         {
             cout << "\t(" << workshop.getNumber() << ") "
-                 << workshop.getTitle() << "\n";
+                << workshop.getTitle() << "\n";
         }
 
         cout << endl;
@@ -79,7 +79,7 @@ void Formatter::printOpenWorkshops(
             if (registration.isOpen(workshop.getNumber()))
             {
                 cout << "\t(" << workshop.getNumber() << ") "
-                     << workshop.getTitle() << "\n";
+                    << workshop.getTitle() << "\n";
             }
         }
 
@@ -93,7 +93,7 @@ void Formatter::printWorkshopsByPrice(
     if (workshopList.isEmpty())
     {
         cout << "\n\tWorkshop list is temporarily unavailable."
-             << " Please try again later.\n";
+            << " Please try again later.\n";
     }
     else
     {
@@ -106,9 +106,9 @@ void Formatter::printWorkshopsByPrice(
             if (workshop.getPrice() <= price)
             {
                 cout << "\t(" << workshop.getNumber() << ") $"
-                     << fixed << setprecision(2)
-                     << workshop.getPrice() << " "
-                     << workshop.getTitle() << "\n";
+                    << fixed << setprecision(2)
+                    << workshop.getPrice() << " "
+                    << workshop.getTitle() << "\n";
             }
         }
 
@@ -123,7 +123,7 @@ void Formatter::printParticipantWorkshops(
     if (workshops.empty())
     {
         cout << "\nYou are not currently registered for any workshops."
-             << "\n\n";
+            << "\n\n";
     }
     else
     {
@@ -135,8 +135,8 @@ void Formatter::printParticipantWorkshops(
              participantList.getWorkshops(participantID))
         {
             cout << "\t("
-                 << workshop.getNumber() << ") "
-                 << workshop.getTitle() << "\n";
+                << workshop.getNumber() << ") "
+                << workshop.getTitle() << "\n";
         }
 
         cout << endl;
