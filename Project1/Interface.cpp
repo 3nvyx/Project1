@@ -62,7 +62,7 @@ void processMenu(
             cout << "Thank you for visiting!";
             break;
         default:
-            cerr << "Invalid selection. Please try again." << endl;
+            cout << "Invalid selection. Please try again." << endl;
         }
 
         if (choice != 7)
@@ -92,15 +92,9 @@ bool verifyIdentification(
 {
     const Participant &participant = participantList.getParticipant(id);
 
-    if (
-        participant.getID() == id &&
+    return (
         participant.getFirstName() == firstName &&
-        participant.getLastName() == lastName)
-    {
-        return true;
-    }
-
-    return false;
+        participant.getLastName() == lastName);
 }
 
 void viewAllWorkshops(const WorkshopList &workshopList)
@@ -146,8 +140,7 @@ void viewParticipantWorkshops(const ParticipantList &participantList)
     }
     else
     {
-        cout << "The ID number does not match the name provided."
-            << "\n\n";
+        cout << "The ID number does not match the name provided.\n\n";
     }
 }
 

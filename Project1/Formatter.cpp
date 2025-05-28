@@ -122,8 +122,7 @@ void Formatter::printParticipantWorkshops(
     auto workshops = participantList.getWorkshops(participantID);
     if (workshops.empty())
     {
-        cout << "\nYou are not currently registered for any workshops."
-            << "\n\n";
+        cout << "You are not currently registered for any workshops.\n\n";
     }
     else
     {
@@ -155,6 +154,6 @@ void Formatter::printWorkshop(const Workshop &workshop)
 void Formatter::pauseAndWait()
 {
     cout << "Press 'Enter' to return to the menu...";
-    cin.ignore(1000, '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
 }
