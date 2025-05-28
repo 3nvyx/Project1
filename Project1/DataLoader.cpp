@@ -31,21 +31,21 @@ void DataLoader::loadWorkshops(
         string line;
         while (getline(file, line))
         {
-            stringstream ss(line);
+            stringstream stream(line);
             string token;
 
             int number, hours, capacity;
             double price;
             string title;
 
-            getline(ss, token, '|');
+            getline(stream, token, '|');
             number = stoi(token);
-            getline(ss, title, '|');
-            getline(ss, token, '|');
+            getline(stream, title, '|');
+            getline(stream, token, '|');
             hours = stoi(token);
-            getline(ss, token, '|');
+            getline(stream, token, '|');
             capacity = stoi(token);
-            getline(ss, token, '|');
+            getline(stream, token, '|');
             price = stod(token);
 
             workshopList.addWorkshop(
@@ -67,15 +67,15 @@ void DataLoader::loadParticipants(
         string line;
         while (getline(file, line))
         {
-            stringstream ss(line);
+            stringstream stream(line);
             string token;
             int id;
             string firstName, lastName;
 
-            getline(ss, token, '|');
+            getline(stream, token, '|');
             id = stoi(token);
-            getline(ss, firstName, '|');
-            getline(ss, lastName, '|');
+            getline(stream, firstName, '|');
+            getline(stream, lastName, '|');
 
             participantList.addParticipant(
                 Participant(id, firstName, lastName));
@@ -89,7 +89,7 @@ void DataLoader::loadRegistration(
     ifstream file(filename);
     if (!file)
     {
-        cerr << "Could not open " << filename << "\n";
+        cout << "Could not open " << filename << "\n";
     }
     else
     {
@@ -99,16 +99,16 @@ void DataLoader::loadRegistration(
             if (line.empty())
                 continue;
 
-            stringstream ss(line);
+            stringstream stream(line);
             string token;
 
-            if (!getline(ss, token, '|'))
+            if (!getline(stream, token, '|'))
                 continue;
 
             int workshopNo = stoi(token);
             regManager.addOpenWorkshop(workshopNo);
 
-            while (getline(ss, token, '|'))
+            while (getline(stream, token, '|'))
             {
                 if (token.empty())
                     continue;

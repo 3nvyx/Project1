@@ -146,8 +146,8 @@ void viewParticipantWorkshops(const ParticipantList &participantList)
     }
     else
     {
-        cerr << "The ID number does not match the name provided."
-             << "\n\n";
+        cout << "The ID number does not match the name provided."
+            << "\n\n";
     }
 }
 
@@ -178,8 +178,8 @@ void registerForWorkshop(
         if (!verifyIdentification(
                 participantList, id, firstName, lastName))
         {
-            cerr << "The ID number does not match the name provided."
-                 << endl;
+            cout << "The ID number does not match the name provided."
+                << endl;
         }
         else
         {
@@ -196,7 +196,7 @@ void registerForWorkshop(
             Formatter::printWorkshop(selectedWorkshop);
 
             cout << "A confirmation email with payment details "
-                 << "has been sent to you.\n\n";
+                << "has been sent to you.\n\n";
         }
     }
 }
@@ -214,7 +214,7 @@ void cancelRegistration(
     // Verify identification
     if (!verifyIdentification(participantList, id, firstName, lastName))
     {
-        cerr << "The ID number does not match the name provided." << endl;
+        cout << "The ID number does not match the name provided." << endl;
     }
     else
     {
@@ -225,7 +225,7 @@ void cancelRegistration(
         cin >> workshopNumber;
 
         cout << "\nYour registration for the following workshop "
-             << "has been cancelled:\n";
+            << "has been cancelled:\n";
         Formatter::printWorkshop(
             workshopList.getWorkshop(workshopNumber));
 
@@ -234,6 +234,6 @@ void cancelRegistration(
 
         // Confirmation message
         cout << "A confirmation email with refund details "
-             << "has been sent to you.\n\n";
+            << "has been sent to you.\n\n";
     }
 }
