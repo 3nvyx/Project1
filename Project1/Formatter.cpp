@@ -25,16 +25,16 @@ using namespace std;
 void Formatter::displayMenu()
 {
     cout << "\n*********************************************\n"
-        << "\t\tWORKSHOP HUB\n"
-        << "*********************************************\n"
-        << "\t1. View all workshops\n"
-        << "\t2. View open workshops\n"
-        << "\t3. View workshops by price\n"
-        << "\t4. Register for a workshop\n"
-        << "\t5. List all your workshops\n"
-        << "\t6. Cancel registration\n"
-        << "\t7. Exit\n"
-        << "\n";
+         << "\t\tWORKSHOP HUB\n"
+         << "*********************************************\n"
+         << "\t1. View all workshops\n"
+         << "\t2. View open workshops\n"
+         << "\t3. View workshops by price\n"
+         << "\t4. Register for a workshop\n"
+         << "\t5. List all your workshops\n"
+         << "\t6. Cancel registration\n"
+         << "\t7. Exit\n"
+         << endl;
 }
 
 void Formatter::printAllWorkshops(const WorkshopList &workshopList)
@@ -47,8 +47,8 @@ void Formatter::printAllWorkshops(const WorkshopList &workshopList)
     else
     {
         cout << "\tALL WORKSHOPS\n"
-            << "\t(Workshop #) Workshop Name\n"
-            << "\t-----------------------------\n";
+             << "\t(Workshop #) Workshop Name\n"
+             << "\t-----------------------------\n";
 
         for (const Workshop &workshop : workshopList.getAllWorkshops())
         {
@@ -71,8 +71,8 @@ void Formatter::printOpenWorkshops(
     else
     {
         cout << "\tOPEN WORKSHOPS\n"
-            << "\t(Workshop #) Workshop Name\n"
-            << "\t--------------------------\n";
+             << "\t(Workshop #) Workshop Name\n"
+             << "\t--------------------------\n";
 
         for (const Workshop &workshop : workshopList.getAllWorkshops())
         {
@@ -98,8 +98,8 @@ void Formatter::printWorkshopsByPrice(
     else
     {
         cout << "\n\tWORKSHOPS BY PRICE\n"
-            << "\t(Workshop #) $Price Workshop Name\n"
-            << "\t---------------------------------\n";
+             << "\t(Workshop #) $Price Workshop Name\n"
+             << "\t---------------------------------\n";
 
         for (const Workshop &workshop : workshopList.getAllWorkshops())
         {
@@ -127,8 +127,8 @@ void Formatter::printParticipantWorkshops(
     else
     {
         cout << "\tYOUR WORKSHOPS\n"
-            << "\t(Workshop #) Workshop Name\n"
-            << "\t--------------------------\n";
+             << "\t(Workshop #) Workshop Name\n"
+             << "\t--------------------------\n";
 
         for (const Workshop &workshop :
              participantList.getWorkshops(participantID))
@@ -145,10 +145,10 @@ void Formatter::printParticipantWorkshops(
 void Formatter::printWorkshop(const Workshop &workshop)
 {
     cout << "\n\t" << workshop.getTitle() << "\n"
-        << "\tNumber: " << workshop.getNumber() << "\n"
-        << "\tHours: " << workshop.getHours() << "\n"
-        << "\tPrice: $" << fixed << setprecision(2)
-        << workshop.getPrice() << "\n\n";
+         << "\tNumber: " << workshop.getNumber() << "\n"
+         << "\tHours: " << workshop.getHours() << "\n"
+         << "\tPrice: $" << fixed << setprecision(2)
+         << workshop.getPrice() << "\n\n";
 }
 
 void Formatter::pauseAndWait()
