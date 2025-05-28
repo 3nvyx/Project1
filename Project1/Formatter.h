@@ -16,7 +16,6 @@
 #define FORMATTER_H
 
 #include "WorkshopList.h"
-#include "Workshop.h"
 #include "RegistrationManager.h"
 #include "ParticipantList.h"
 
